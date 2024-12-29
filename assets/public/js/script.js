@@ -1,21 +1,21 @@
 jQuery(function ($) {
-    // Enable sortable functionality
+
     $(".er-kanban-column").sortable({
-        connectWith: ".er-kanban-column", // Allow movement between columns
-        placeholder: "er-ui-state-highlight", // Highlight the drop area
-        delay: 150, // Add a delay to prevent click-drag conflicts
+        connectWith: ".er-kanban-column",
+        placeholder: "er-ui-state-highlight",
+        delay: 150,
         start: function (event, ui) {
             ui.placeholder.height(ui.item.height());
-            ui.item.addClass("er-dragging"); // Add tilt effect
+            ui.item.addClass("er-dragging");
         },
         stop: function (event, ui) {
-            const taskId = ui.item.attr("id").replace("er-task-", ""); // Extract task ID
-            const columnId = ui.item.parent().attr("id").split("er-stage-")[1]; // Extract column ID
-            ui.item.removeClass("er-dragging"); // Remove tilt effect
+            const taskId = ui.item.attr("id").replace("er-task-", "");
+            const columnId = ui.item.parent().attr("id").split("er-stage-")[1];
+            ui.item.removeClass("er-dragging");
 
             // AJAX call to update the task's new column
             $.ajax({
-                url: `${EASYROADMAP.api_base}/tasks/${taskId}/move`, // Replace with your API endpoint
+                url: `${EASYROADMAP.api_base}/tasks/${taskId}/move`,
                 method: "POST",
                 data: {
                     stage: columnId,
@@ -46,28 +46,20 @@ jQuery(function ($) {
 
     // Open modal and fetch task data
     $(".er-kanban-item").on("click", function () {
-        const taskId = $(this).attr("id").replace("er-task-", ""); // Extract task ID
+        const taskId = $(this).attr("id").replace("er-task-", "");
         $("#er-modal-overlay").fadeIn();
         $("#er-modal-id").val(taskId);
         $("#er-modal").fadeIn();
 
         // Fetch task details via AJAX
         $.ajax({
-            url: `${EASYROADMAP.api_base}/tasks/${taskId}`, // Replace with your API endpoint
+            url: `${EASYROADMAP.api_base}/tasks/${taskId}`,
             method: "GET",
             success: function (response) {
                 $("#er-modal-title").text(response.data.task.title);
                 $("#er-modal-description").html(response.data.task.description);
                 $("#er-upvote-count").text(response.data.task.upvotes || 0);
                 $("#er-downvote-count").text(response.data.task.downvotes || 0);
-
-                // Populate comments (if needed in the future)
-                // $("#er-comments-list").empty();
-                // if (response.comments && response.comments.length > 0) {
-                //     response.comments.forEach(comment => {
-                //         $("#er-comments-list").append(`<li>${comment}</li>`);
-                //     });
-                // }
             },
             error: function () {
                 console.error("Error fetching task data.");
@@ -78,10 +70,10 @@ jQuery(function ($) {
     // Handle upvote/downvote
     $(".er-vote-btn").on("click", function () {
         const voteBtn = $(this);
-        const taskId = $("#er-modal-id").val(); // Retrieve task ID from modal
-        const type = voteBtn.data("type"); // Extract button type (upvote/downvote)
+        const taskId = $("#er-modal-id").val();
+        const type = voteBtn.data("type");
         $.ajax({
-            url: `${EASYROADMAP.api_base}/tasks/${taskId}/vote`, // Replace with your API endpoint
+            url: `${EASYROADMAP.api_base}/tasks/${taskId}/vote`,
             method: "POST",
             data: {
                 type: type,
@@ -97,7 +89,7 @@ jQuery(function ($) {
 
     // Close modal when clicking outside the modal content
     $("#er-modal-overlay").on("click", function (e) {
-        if (e.target.id === "er-modal-overlay") { // Check if the clicked area is the overlay
+        if (e.target.id === "er-modal-overlay") {
             $("#er-modal, #er-modal-overlay").fadeOut();
         }
     });
@@ -107,23 +99,4 @@ jQuery(function ($) {
         $("#er-modal, #er-modal-overlay").fadeOut();
     });
 
-    // Add comment (if enabled in the future)
-    $("#er-add-comment").on("click", function () {
-        const comment = $("#er-comment-input").val();
-        const taskId = $("#er-modal-id").val(); // Retrieve task ID from modal
-        if (comment.trim()) {
-            $.ajax({
-                url: `${EASYROADMAP.api_base}/tasks/${taskId}/comments`, // Replace with your API endpoint
-                method: "POST",
-                data: { comment },
-                success: function () {
-                    $("#er-comments-list").append(`<li>${comment}</li>`);
-                    $("#er-comment-input").val(""); // Clear the input field
-                },
-                error: function () {
-                    console.error("Error adding comment.");
-                }
-            });
-        }
-    });
 });
