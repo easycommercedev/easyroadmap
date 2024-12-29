@@ -1,0 +1,66 @@
+/* General column styling */
+.kanban-columns {
+    display: flex;
+}
+.kanban-column {
+    width: 300px;
+    margin: 0 10px;
+    min-height: 400px;
+    padding: 10px;
+    background-color: #f4f5f7;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Column heading styling */
+.kanban-column h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+/* Task item styling */
+.kanban-item {
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: grab;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Grabbing cursor while dragging */
+.kanban-item:active {
+    cursor: grabbing;
+}
+
+/* Placeholder for sortable */
+.ui-state-highlight {
+    background: #f3f4f6;
+    border: 2px dashed #cbd5e0;
+    height: 50px;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+
+/* Empty task column placeholder */
+.kanban-column p {
+    color: #999;
+    font-size: 0.875rem;
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Hover effect on tasks */
+.kanban-item:hover {
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Tilt effect while dragging */
+.dragging {
+    transform: rotate(-3deg);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
