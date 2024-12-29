@@ -31,24 +31,20 @@ $tasks = $args['tasks'] ?? [];
             <input type="hidden" id="er-modal-id">
             <h2 id="er-modal-title" class="er-text-2xl er-font-bold er-mb-4">Task Title</h2>
 
-            <!-- Task Description -->
-            <div id="er-modal-description" class="er-mb-4">Task description goes here.</div>
-
             <!-- Upvote/Downvote Section -->
             <div class="er-flex er-items-center er-space-x-4 er-mb-4">
                 <span id="er-upvote" data-type="upvote" class="er-vote-btn er-flex er-items-center er-space-x-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="green">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
-                    </svg>
+                    👍
                     <span class="er-vote-count" id="er-upvote-count">0</span>
                 </span>
                 <span id="er-downvote" data-type="downvote" class="er-vote-btn er-flex er-items-center er-space-x-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="red">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
+                     👎
                     <span class="er-vote-count" id="er-downvote-count">0</span>
                 </span>
             </div>
+
+            <!-- Task Description -->
+            <div id="er-modal-description" class="er-mb-4">Task description goes here.</div>
 
             <!-- Comments Section -->
             <!-- 
