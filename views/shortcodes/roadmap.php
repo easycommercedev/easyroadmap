@@ -33,7 +33,7 @@ $tasks = $args['tasks'] ?? [];
             <h2 id="er-modal-title" class="er-text-2xl er-font-bold er-mb-4">Task Title</h2>
 
             <!-- Task Description -->
-            <p id="er-modal-description" class="er-mb-4">Task description goes here.</p>
+            <div id="er-modal-description" class="er-mb-4">Task description goes here.</div>
 
             <!-- Upvote/Downvote Section -->
             <div class="er-flex er-items-center er-space-x-4 er-mb-4">

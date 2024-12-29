@@ -91,20 +91,19 @@
 
 /* Modal Container */
 .er-modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: calc(50% - 300px);
+    left: calc(50% - 350px);
     z-index: 50;
     background: white;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    display: none; /* Hidden by default */
-    width: 700px; /* Default width of the modal */
-    max-height: 80vh; /* Limit height for scrollable content */
-    overflow-y: auto; /* Scrollable content if exceeds max height */
+    display: none;
+    width: 700px;
+    max-height: 80vh;
+    overflow-y: auto;
     position: relative;
+    max-height: 600px;
 }
 
 /* Close Button */
@@ -137,13 +136,10 @@
 
 /* Upvote/Downvote Section */
 .er-vote-btn {
-    display: flex;
     align-items: center;
-    gap: 8px; /* Replaces space-x-2 */
+    gap: 4px;
     cursor: pointer;
     background: transparent;
-    border: none;
-    padding: 0;
     font-size: 1rem;
 }
 
