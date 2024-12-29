@@ -1,8 +1,14 @@
 .er-flex {
     display: flex;
 }
+.er-space-x-2 {
+    gap: 8px;
+}
+.er-space-x-3 {
+    gap: 12px;
+}
 .er-space-x-4 {
-    gap: 20px;
+    gap: 16px;
 }
 
 /* General column styling */
@@ -137,8 +143,11 @@
     align-items: center;
     gap: 4px;
     cursor: pointer;
-    background: transparent;
+    background: #f5f5f5;
     font-size: 1rem;
+    padding: 1px 4px;
+    border-radius: 4px;
+    border: 1px solid #ebebeb;
 }
 
 .er-vote-btn svg {

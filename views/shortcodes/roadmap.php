@@ -32,7 +32,7 @@ $tasks = $args['tasks'] ?? [];
             <h2 id="er-modal-title" class="er-text-2xl er-font-bold er-mb-4">Task Title</h2>
 
             <!-- Upvote/Downvote Section -->
-            <div class="er-flex er-items-center er-space-x-4 er-mb-4">
+            <div class="er-flex er-items-center er-space-x-2 er-mb-4">
                 <span id="er-upvote" data-type="upvote" class="er-vote-btn er-flex er-items-center er-space-x-2">
                     👍
                     <span class="er-vote-count" id="er-upvote-count">0</span>
