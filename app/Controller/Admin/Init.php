@@ -22,12 +22,12 @@ class Init {
 		$this->action( 'created_term', [ $this, 'save_add_taxo_fields' ], 10, 3 );
 		$this->action( 'task_stage_edit_form', [ $this, 'show_edit_taxo_fields' ] );
 		$this->action( 'edited_task_stage', [ $this, 'save_edit_taxo_fields' ], 10, 2 );
+		$this->filter( 'manage_edit-task_stage_columns', [ $this, 'add_color_column' ] );
+		$this->filter( 'manage_task_stage_custom_column', [ $this, 'populate_color_column' ], 10, 3 );
 	}
 
 	public function show_add_taxo_fields() {
-
 		$color = easyroadmap_get_random_color();
-
 		?>
 		<div class="form-field term-color-wrap">
 			<label for="tag-color"><?php _e( 'Color', 'easyroadmap' ); ?></label>
@@ -39,16 +39,14 @@ class Init {
 
 	public function save_add_taxo_fields( $term_id, $tt_id, $taxonomy ) {
 		if ( $taxonomy === 'task_stage' ) {
-		    update_term_meta( $term_id, 'color', $this->sanitize( $_POST['color'] ) );
+			update_term_meta( $term_id, 'color', $this->sanitize( $_POST['color'] ) );
 		}
 	}
 
 	public function show_edit_taxo_fields( $term ) {
-		
-		if( empty( $color = get_term_meta( $term->term_id, 'color', true ) ) ) {
+		if ( empty( $color = get_term_meta( $term->term_id, 'color', true ) ) ) {
 			$color = easyroadmap_get_random_color();
 		}
-
 		?>
 		<table class="form-table" role="presentation">
 			<tbody>
@@ -67,9 +65,34 @@ class Init {
 	}
 
 	public function save_edit_taxo_fields( $term_id, $tt_id ) {
-	    if ( isset( $_POST['color'] ) ) {
-	        update_term_meta( $term_id, 'color', $this->sanitize( $_POST['color'] ) );
-	    }
+		if ( isset( $_POST['color'] ) ) {
+			update_term_meta( $term_id, 'color', $this->sanitize( $_POST['color'] ) );
+		}
 	}
 
+	/**
+	 * Add custom column to the taxonomy table.
+	 */
+	public function add_color_column( $columns ) {
+
+	    $start		= array_slice( $columns, 0, 1, true );
+	    $end		= array_slice( $columns, 1, null, true );
+	    $columns	= $start + [ 'color' => '' ] + $end;
+
+	    return $columns;
+	}
+
+
+	/**
+	 * Populate the custom column with the term's color meta.
+	 */
+	public function populate_color_column( $content, $column_name, $term_id ) {
+
+		if ( 'color' === $column_name ) {
+			$color = get_term_meta( $term_id, 'color', true );
+			$content = $color ? sprintf( '<div style="width: 30px; height: 30px; background-color: %s; border-radius: 4px;"></div>', esc_attr( $color ) ) : '';
+		}
+
+		return $content;
+	}
 }

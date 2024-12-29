@@ -150,7 +150,7 @@ function easyroadmap_product_post_type() {
 }
 
 function easyroadmap_get_random_color() {
-    $colors = [ '#FF9999', '#FFCC99', '#FFCC66', '#FFD700', '#FF9966', '#FF6666', '#FF9966', '#FFB266', '#FFA07A', '#FFDAB9', '#FF8C66', '#FFC1A1', '#FFE5B4', '#B3E5FC', '#81D4FA', '#4FC3F7', '#4DB6AC', '#80CBC4', '#81C784', '#AED581', '#DCE775', '#FFE082', '#FFB74D', '#FF8A65', '#F48FB1', '#E57373', '#BA68C8', '#9575CD', '#7986CB', '#64B5F6' ];
+    $colors = [ '#FF9999', '#FFCC99', '#FFCC66', '#FFD700', '#FF9966', '#FF6666', '#FF9966', '#FFB266', '#FFA07A', '#FFDAB9', '#FF8C66', '#FFC1A1', '#FFE5B4', '#B3E5FC', '#81D4FA', '#4FC3F7', '#4DB6AC', '#81C784', '#AED581', '#DCE775', '#FFE082', '#FF8A65', '#F48FB1', '#E57373', '#BA68C8', '#9575CD', '#7986CB' ];
 
     return $colors[ array_rand( $colors ) ];
 }

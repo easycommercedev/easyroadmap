@@ -45,7 +45,12 @@ class Menu {
 		}
 
 		if( true ) {
-
+			
+			$this->enqueue_style(
+				'easyroadmap',
+				EASYROADMAP_ASSETS_URL . 'admin/css/style.css'
+			);
+			
 			wp_enqueue_script( 'jquery-ui-sortable' );
 
 			$this->enqueue_script(
