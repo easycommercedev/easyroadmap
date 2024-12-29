@@ -1,0 +1,23 @@
+{
+    "name": "easyroadmap/easyroadmap",
+    "description": "Ecommerce with WordPress made easy.",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "EasyRoadmap\\": "app/"
+        },
+        "files": ["app/Helper/functions.php", "app/Config/autoload.php"]
+    },
+    "authors": [
+        {
+            "name": "Codexpert, Inc"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpunit/phpunit": "^10.5",
+        "brain/monkey": "^2.6",
+        "wp-cli/wp-cli": "^2.5"
+    }
+}

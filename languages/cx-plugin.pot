@@ -1,0 +1,51 @@
+# Copyright (C) 2024 Codexpert, Inc
+# This file is distributed under the same license as the EasyRoadmap plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: EasyRoadmap 0.91\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/easyroadmap\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-05-26T07:25:45+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.9.0\n"
+"X-Domain: easyroadmap\n"
+
+#. Plugin Name of the plugin
+#: app/Controller/Menu.php:40
+#: app/Controller/Menu.php:41
+msgid "EasyRoadmap"
+msgstr ""
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+msgid "https://codexpert.io"
+msgstr ""
+
+#. Description of the plugin
+msgid "Product roadmap made easy"
+msgstr ""
+
+#. Author of the plugin
+msgid "Codexpert, Inc"
+msgstr ""
+
+#: app/Controller/API.php:35
+msgid "The option `key` name"
+msgstr ""
+
+#: app/Controller/Front.php:20
+msgid "THIS IS LOADED FROM THE Front CONTROLLER"
+msgstr ""
+
+#: app/Controller/Menu.php:51
+#: app/Controller/Menu.php:52
+msgid "Help"
+msgstr ""
+
+#: app/Controller/Menu.php:66
+msgid "Loading.."
+msgstr ""

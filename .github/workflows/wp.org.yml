@@ -1,0 +1,46 @@
+name: Release to WordPress SVN
+
+on:
+  push:
+    branches:
+      - wp.org
+
+jobs:
+  tag-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+
+    - name: Sync to WordPress SVN
+      env:
+        SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+        SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+        SLUG: "easyroadmap"
+        VERSION: "0.9"
+      run: |
+        # SVN checkout
+        svn co https://plugins.svn.wordpress.org/${SLUG}/ svn-dir --username $SVN_USERNAME --password $SVN_PASSWORD
+
+        # Copy files from git repo to svn
+        rsync -av --exclude=".git" --exclude=".github" --exclude="svn-dir" --exclude="node_modules" --exclude="spa/admin" --exclude="spa/public" --exclude=".phpunit.cache" --exclude="composer.lock" --exclude="package-lock.json" --exclude="tree.txt" . svn-dir/trunk/
+
+        # Add new version tag
+        svn cp svn-dir/trunk svn-dir/tags/${VERSION} --username $SVN_USERNAME --password $SVN_PASSWORD
+
+        # SVN commit
+        cd svn-dir
+        svn stat | grep '^?' | awk '{print $2}' | xargs -r svn add
+        svn stat | grep '^!' | awk '{print $2}' | xargs -r svn rm
+
+        # Only proceed with commit if there are changes
+        if [[ -n $(svn stat) ]]; then
+            svn commit -m "Release version ${VERSION}" --username $SVN_USERNAME --password $SVN_PASSWORD
+        else
+            echo "No changes to commit"
+        fi

@@ -1,0 +1,7 @@
+vendor/
+node_modules/
+spa/build/
+composer.lock
+package-lock.json
+.phpunit.cache/
+tree.txt
