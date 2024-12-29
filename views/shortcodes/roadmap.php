@@ -36,7 +36,8 @@ $tasks = $args['tasks'] ?? [];
                     <span class="er-vote-count" id="er-downvote-count">0</span>
                 </span>
             </div>
-            
+
+            <div id="er-modal-description" class="er-mb-4">Task description goes here.</div>
         </div>
     </div>
 </div>
