@@ -28,17 +28,34 @@ class API {
 		/**
 		 * Tasks related APIs
 		 */
-		register_rest_route( $this->namespace, '/tasks/(?P<task>[a-zA-Z0-9-_]+)/move', [
+		register_rest_route( $this->namespace, '/tasks/(?P<task>\d+)/move', [
 		    'methods'   => WP_REST_Server::CREATABLE,
 		    'callback'  => [ new Task, 'move' ],
 		    'args'      => [
+		        'task' => [
+		            'description'   => __( 'The `task` ID', 'easysupport' ),
+		            'required'      => true,
+		        ],
 		        'stage' => [
-		            'description'   => __( 'The `stage` ID or slug', 'easysupport' ),
+		            'description'   => __( 'The `stage` ID', 'easysupport' ),
 		            'required'      => true,
 		        ],
 		    ],
 		    'permission_callback' => [ $this, 'is_admin' ],
 		] );
+
+		register_rest_route( $this->namespace, '/tasks/(?P<id>\d+)', [
+		    'methods'   => WP_REST_Server::READABLE,
+		    'callback'  => [ new Task, 'get' ],
+		    'args'      => [
+		        'id' => [
+		            'description'   => __( 'The `task` ID', 'easysupport' ),
+		            'required'      => true,
+		        ]
+		    ],
+		    'permission_callback' => [ $this, 'is_admin' ],
+		] );
+
 		/**
 		 * Options related APIs
 		 */

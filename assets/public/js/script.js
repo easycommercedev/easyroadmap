@@ -12,7 +12,6 @@ jQuery(function ($) {
             const taskId = ui.item.attr("id").replace("task-", ""); // Extract task ID
             const columnId = ui.item.parent().attr("id").split("stage-")[1]; // Extract column ID
             ui.item.removeClass("dragging"); // Remove tilt effect
-            console.log(`Task ID: ${taskId} moved to Column ID: ${columnId}`);
 
             // AJAX call to update the task's new column
             $.ajax({
@@ -22,10 +21,10 @@ jQuery(function ($) {
                     stage: columnId,
                 },
                 success: function (response) {
-                    console.log("Task updated successfully:", response);
+                    console.log(response);
                 },
                 error: function (error) {
-                    console.error("Error updating task:", error);
+                    console.error(error);
                 }
             });
         }
@@ -39,21 +38,21 @@ jQuery(function ($) {
 
         // Fetch task details via AJAX
         $.ajax({
-            url: `/path-to-fetch-task/${taskId}`, // Replace with your API endpoint
+            url: `${EASYROADMAP.api_base}/tasks/${taskId}`, // Replace with your API endpoint
             method: "GET",
             success: function (response) {
-                $("#modal-title").text(response.title || `Task ${taskId}`);
-                $("#modal-description").text(response.description || "No description available.");
-                $("#upvote-count").text(response.upvotes || 0);
-                $("#downvote-count").text(response.downvotes || 0);
+                $("#modal-title").text(response.data.task.title);
+                $("#modal-description").html(response.data.task.description);
+                $("#upvote-count").text(response.data.task.upvotes || 0);
+                $("#downvote-count").text(response.data.task.downvotes || 0);
 
                 // Populate comments
-                $("#comments-list").empty();
-                if (response.comments && response.comments.length > 0) {
-                    response.comments.forEach(comment => {
-                        $("#comments-list").append(`<li>${comment}</li>`);
-                    });
-                }
+                // $("#comments-list").empty();
+                // if (response.comments && response.comments.length > 0) {
+                //     response.comments.forEach(comment => {
+                //         $("#comments-list").append(`<li>${comment}</li>`);
+                //     });
+                // }
             },
             error: function () {
                 console.error("Error fetching task data.");
