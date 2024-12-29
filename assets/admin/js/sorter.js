@@ -1,6 +1,6 @@
 jQuery(function($) {
 
-    $('#the-list').sortable({
+    $('.taxonomy-task_stage #the-list').sortable({
         cursor: 'grabbing',
         axis: 'y',
         containment: '#the-list',
