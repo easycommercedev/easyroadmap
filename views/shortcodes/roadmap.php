@@ -6,7 +6,7 @@ $tasks = $args['tasks'] ?? [];
 ?>
 <div class="er-flex er-justify-center er-space-x-4 er-mt-10 er-kanban-columns">
     <?php foreach ( $tasks as $slug => $column ) : ?>
-        <div class="er-kanban-column" id="er-stage-<?php echo $column['id']; ?>">
+        <div class="er-kanban-column" id="er-stage-<?php echo $column['id']; ?>" style="background: <?php echo get_term_meta( $column['id'], 'color', true ); ?>;">
             <h3 class="er-text-xl er-font-bold er-mb-4"><?php echo $column['name']; ?></h3>
             <?php if ( ! empty( $column['tasks'] ) ) : ?>
                 <?php foreach ( $column['tasks'] as $task_id => $task_name): ?>
