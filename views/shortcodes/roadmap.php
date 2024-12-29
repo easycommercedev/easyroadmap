@@ -13,7 +13,6 @@ $tasks = $args['tasks'] ?? [];
                     <div class="er-kanban-item" id="er-task-<?php echo $task_id; ?>"><?php echo $task_name; ?></div>
                 <?php endforeach; ?>
             <?php else: ?>
-                <p class="er-empty-column-placeholder">No tasks available</p>
             <?php endif; ?>
         </div>
     <?php endforeach; ?>
