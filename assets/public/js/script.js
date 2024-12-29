@@ -1,17 +1,17 @@
 jQuery(function ($) {
     // Enable sortable functionality
-    $(".kanban-column").sortable({
-        connectWith: ".kanban-column", // Allow movement between columns
-        placeholder: "ui-state-highlight", // Highlight the drop area
+    $(".er-kanban-column").sortable({
+        connectWith: ".er-kanban-column", // Allow movement between columns
+        placeholder: "er-ui-state-highlight", // Highlight the drop area
         delay: 150, // Add a delay to prevent click-drag conflicts
         start: function (event, ui) {
             ui.placeholder.height(ui.item.height());
-            ui.item.addClass("dragging"); // Add tilt effect
+            ui.item.addClass("er-dragging"); // Add tilt effect
         },
         stop: function (event, ui) {
-            const taskId = ui.item.attr("id").replace("task-", ""); // Extract task ID
-            const columnId = ui.item.parent().attr("id").split("stage-")[1]; // Extract column ID
-            ui.item.removeClass("dragging"); // Remove tilt effect
+            const taskId = ui.item.attr("id").replace("er-task-", ""); // Extract task ID
+            const columnId = ui.item.parent().attr("id").split("er-stage-")[1]; // Extract column ID
+            ui.item.removeClass("er-dragging"); // Remove tilt effect
 
             // AJAX call to update the task's new column
             $.ajax({
@@ -31,27 +31,27 @@ jQuery(function ($) {
     }).disableSelection();
 
     // Open modal and fetch task data
-    $(".kanban-item").on("click", function () {
-        const taskId = $(this).attr("id").replace("task-", ""); // Extract task ID
-        $("#modal-overlay").fadeIn();
-        $("#modal-id").val(taskId);
-        $("#modal").fadeIn();
+    $(".er-kanban-item").on("click", function () {
+        const taskId = $(this).attr("id").replace("er-task-", ""); // Extract task ID
+        $("#er-modal-overlay").fadeIn();
+        $("#er-modal-id").val(taskId);
+        $("#er-modal").fadeIn();
 
         // Fetch task details via AJAX
         $.ajax({
             url: `${EASYROADMAP.api_base}/tasks/${taskId}`, // Replace with your API endpoint
             method: "GET",
             success: function (response) {
-                $("#modal-title").text(response.data.task.title);
-                $("#modal-description").html(response.data.task.description);
-                $("#upvote-count").text(response.data.task.upvotes || 0);
-                $("#downvote-count").text(response.data.task.downvotes || 0);
+                $("#er-modal-title").text(response.data.task.title);
+                $("#er-modal-description").html(response.data.task.description);
+                $("#er-upvote-count").text(response.data.task.upvotes || 0);
+                $("#er-downvote-count").text(response.data.task.downvotes || 0);
 
-                // Populate comments
-                // $("#comments-list").empty();
+                // Populate comments (if needed in the future)
+                // $("#er-comments-list").empty();
                 // if (response.comments && response.comments.length > 0) {
                 //     response.comments.forEach(comment => {
-                //         $("#comments-list").append(`<li>${comment}</li>`);
+                //         $("#er-comments-list").append(`<li>${comment}</li>`);
                 //     });
                 // }
             },
@@ -61,11 +61,11 @@ jQuery(function ($) {
         });
     });
 
-    // Handle upvote
-    $(".vote-btn").on("click", function () {
+    // Handle upvote/downvote
+    $(".er-vote-btn").on("click", function () {
         const voteBtn = $(this);
-        const taskId = $("#modal-id").val(); // Retrieve task ID from modal
-        const type = voteBtn.attr('id')
+        const taskId = $("#er-modal-id").val(); // Retrieve task ID from modal
+        const type = voteBtn.data("type"); // Extract button type (upvote/downvote)
         $.ajax({
             url: `${EASYROADMAP.api_base}/tasks/${taskId}/vote`, // Replace with your API endpoint
             method: "POST",
@@ -73,39 +73,38 @@ jQuery(function ($) {
                 type: type,
             },
             success: function (response) {
-                console.log(response.data.votes);
-                $(".vote-count",voteBtn).text(response.data.votes);
+                $(".er-vote-count", voteBtn).text(response.data.votes);
             },
             error: function () {
-                console.error("Error processing upvote.");
+                console.error("Error processing vote.");
             }
         });
     });
 
     // Close modal when clicking outside the modal content
-    $("#modal-overlay").on("click", function (e) {
-        if (e.target.id === "modal-overlay") { // Check if the clicked area is the overlay
-            $("#modal, #modal-overlay").fadeOut();
+    $("#er-modal-overlay").on("click", function (e) {
+        if (e.target.id === "er-modal-overlay") { // Check if the clicked area is the overlay
+            $("#er-modal, #er-modal-overlay").fadeOut();
         }
     });
 
     // Close modal when clicking the "×" button
-    $("#close-modal").on("click", function () {
-        $("#modal, #modal-overlay").fadeOut();
+    $("#er-close-modal").on("click", function () {
+        $("#er-modal, #er-modal-overlay").fadeOut();
     });
 
-    // Add comment
-    $("#add-comment").on("click", function () {
-        const comment = $("#comment-input").val();
-        const taskId = $("#modal-title").data("task-id"); // Retrieve task ID from modal
+    // Add comment (if enabled in the future)
+    $("#er-add-comment").on("click", function () {
+        const comment = $("#er-comment-input").val();
+        const taskId = $("#er-modal-id").val(); // Retrieve task ID from modal
         if (comment.trim()) {
             $.ajax({
-                url: `/path-to-add-comment/${taskId}`, // Replace with your API endpoint
+                url: `${EASYROADMAP.api_base}/tasks/${taskId}/comments`, // Replace with your API endpoint
                 method: "POST",
                 data: { comment },
                 success: function () {
-                    $("#comments-list").append(`<li>${comment}</li>`);
-                    $("#comment-input").val(""); // Clear the input field
+                    $("#er-comments-list").append(`<li>${comment}</li>`);
+                    $("#er-comment-input").val(""); // Clear the input field
                 },
                 error: function () {
                     console.error("Error adding comment.");

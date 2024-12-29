@@ -1,8 +1,19 @@
-/* General column styling */
-.kanban-columns {
+.er-flex {
     display: flex;
 }
-.kanban-column {
+.er-space-x-4 {
+    gap: 20px;
+}
+
+/* General column styling */
+.er-kanban-columns {
+    display: flex;
+    justify-content: center;
+    gap: 16px; /* Replaces space-x-4 */
+    margin-top: 40px; /* Replaces mt-10 */
+}
+
+.er-kanban-column {
     width: 300px;
     margin: 0 10px;
     min-height: 400px;
@@ -13,7 +24,7 @@
 }
 
 /* Column heading styling */
-.kanban-column h3 {
+.er-kanban-column h3 {
     font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 1rem;
@@ -21,7 +32,7 @@
 }
 
 /* Task item styling */
-.kanban-item {
+.er-kanban-item {
     padding: 10px;
     margin: 10px 0;
     background-color: #ffffff;
@@ -32,12 +43,12 @@
 }
 
 /* Grabbing cursor while dragging */
-.kanban-item:active {
+.er-kanban-item:active {
     cursor: grabbing;
 }
 
 /* Placeholder for sortable */
-.ui-state-highlight {
+.er-ui-state-highlight {
     background: #f3f4f6;
     border: 2px dashed #cbd5e0;
     height: 50px;
@@ -46,7 +57,7 @@
 }
 
 /* Empty task column placeholder */
-.kanban-column p {
+.er-empty-column-placeholder {
     color: #999;
     font-size: 0.875rem;
     text-align: center;
@@ -54,18 +65,19 @@
 }
 
 /* Hover effect on tasks */
-.kanban-item:hover {
+.er-kanban-item:hover {
     background-color: #f9f9f9;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Tilt effect while dragging */
-.dragging {
+.er-dragging {
     transform: rotate(-3deg);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
+
 /* Modal Overlay */
-.modal-overlay {
+.er-modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -78,7 +90,7 @@
 }
 
 /* Modal Container */
-.modal {
+.er-modal {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -96,7 +108,7 @@
 }
 
 /* Close Button */
-.close-modal {
+.er-close-modal {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -109,7 +121,7 @@
 }
 
 /* Modal Title */
-#modal-title {
+#er-modal-title {
     font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 1rem;
@@ -117,17 +129,17 @@
 }
 
 /* Modal Description */
-#modal-description {
+#er-modal-description {
     font-size: 1rem;
     color: #555;
     margin-bottom: 1rem;
 }
 
 /* Upvote/Downvote Section */
-.vote-btn {
+.er-vote-btn {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 8px; /* Replaces space-x-2 */
     cursor: pointer;
     background: transparent;
     border: none;
@@ -135,32 +147,32 @@
     font-size: 1rem;
 }
 
-.vote-btn svg {
+.er-vote-btn svg {
     width: 20px;
     height: 20px;
 }
 
-#upvote-count,
-#downvote-count {
+#er-upvote-count,
+#er-downvote-count {
     font-size: 1rem;
     font-weight: bold;
     color: #333;
 }
 
 /* Comments Section */
-#comments-section {
+#er-comments-section {
     margin-top: 20px;
     border-top: 1px solid #eee;
     padding-top: 10px;
 }
 
-#comments-list {
+#er-comments-list {
     list-style-type: none;
     padding: 0;
     margin-bottom: 10px;
 }
 
-#comments-list li {
+#er-comments-list li {
     padding: 8px;
     margin-bottom: 5px;
     background: #f9f9f9;
@@ -171,7 +183,7 @@
 }
 
 /* Add Comment Input and Button */
-#comment-input {
+#er-comment-input {
     width: 100%;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -180,7 +192,7 @@
     margin-bottom: 10px;
 }
 
-#add-comment {
+#er-add-comment {
     display: inline-block;
     background: #007bff; /* Blue color */
     color: #fff;
@@ -191,6 +203,6 @@
     border: none;
 }
 
-#add-comment:hover {
+#er-add-comment:hover {
     background: #0056b3; /* Darker blue on hover */
 }
