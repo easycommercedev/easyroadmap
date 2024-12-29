@@ -15,7 +15,16 @@ class Front {
 	 * Constructor to add all hooks.
 	 */
 	public function __construct() {
+		$this->filter( 'body_class', [ $this, 'add_body_class' ] );
 		$this->action( 'wp_enqueue_scripts', [ $this, 'add_assets' ] );
+	}
+
+	public function add_body_class( $classes ) {
+		if( current_user_can( 'edit_pages' ) ) {
+			$classes[] = 'task-editor';
+		}
+
+		return $classes;
 	}
 
 	public function add_assets() {

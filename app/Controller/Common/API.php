@@ -54,7 +54,7 @@ class API {
 		            'required'      => true,
 		        ]
 		    ],
-		    'permission_callback' => [ $this, 'is_admin' ],
+		    'permission_callback' => [ $this, 'is_user' ],
 		] );
 
 		register_rest_route( $this->namespace, '/tasks/(?P<id>\d+)/vote', [
@@ -70,7 +70,7 @@ class API {
 		            'required'      => true,
 		        ],
 		    ],
-		    'permission_callback' => [ $this, 'is_admin' ],
+		    'permission_callback' => [ $this, 'is_member' ],
 		] );
 		
 		register_rest_route( $this->namespace, '/tasks/order', [

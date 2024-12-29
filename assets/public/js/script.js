@@ -1,6 +1,6 @@
 jQuery(function ($) {
 
-    $(".er-kanban-column").sortable({
+    $(".task-editor .er-kanban-column").sortable({
         connectWith: ".er-kanban-column",
         placeholder: "er-ui-state-highlight",
         delay: 150,
