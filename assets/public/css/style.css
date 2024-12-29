@@ -7,7 +7,6 @@
 
 /* General column styling */
 .er-kanban-columns {
-    display: flex;
     justify-content: center;
     gap: 16px; /* Replaces space-x-4 */
     margin-top: 40px; /* Replaces mt-10 */
