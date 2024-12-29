@@ -64,3 +64,133 @@
     transform: rotate(-3deg);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 40;
+    display: none; /* Hidden by default */
+    max-width: 100% !important;
+}
+
+/* Modal Container */
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 50;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 20px;
+    display: none; /* Hidden by default */
+    width: 700px; /* Default width of the modal */
+    max-height: 80vh; /* Limit height for scrollable content */
+    overflow-y: auto; /* Scrollable content if exceeds max height */
+    position: relative;
+}
+
+/* Close Button */
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    background: none;
+    border: none;
+}
+
+/* Modal Title */
+#modal-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+/* Modal Description */
+#modal-description {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+/* Upvote/Downvote Section */
+.vote-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-size: 1rem;
+}
+
+.vote-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+#upvote-count,
+#downvote-count {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Comments Section */
+#comments-section {
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}
+
+#comments-list {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+#comments-list li {
+    padding: 8px;
+    margin-bottom: 5px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    color: #333;
+}
+
+/* Add Comment Input and Button */
+#comment-input {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 0.875rem;
+    margin-bottom: 10px;
+}
+
+#add-comment {
+    display: inline-block;
+    background: #007bff; /* Blue color */
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    border: none;
+}
+
+#add-comment:hover {
+    background: #0056b3; /* Darker blue on hover */
+}
