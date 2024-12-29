@@ -28,11 +28,11 @@ class API {
 		/**
 		 * Tasks related APIs
 		 */
-		register_rest_route( $this->namespace, '/tasks/(?P<task>\d+)/move', [
+		register_rest_route( $this->namespace, '/tasks/(?P<id>\d+)/move', [
 		    'methods'   => WP_REST_Server::CREATABLE,
 		    'callback'  => [ new Task, 'move' ],
 		    'args'      => [
-		        'task' => [
+		        'id' => [
 		            'description'   => __( 'The `task` ID', 'easysupport' ),
 		            'required'      => true,
 		        ],
@@ -52,6 +52,22 @@ class API {
 		            'description'   => __( 'The `task` ID', 'easysupport' ),
 		            'required'      => true,
 		        ]
+		    ],
+		    'permission_callback' => [ $this, 'is_admin' ],
+		] );
+
+		register_rest_route( $this->namespace, '/tasks/(?P<id>\d+)/vote', [
+		    'methods'   => WP_REST_Server::CREATABLE,
+		    'callback'  => [ new Task, 'vote' ],
+		    'args'      => [
+		        'id' => [
+		            'description'   => __( 'The `task` ID', 'easysupport' ),
+		            'required'      => true,
+		        ],
+		        'type' => [
+		            'description'   => __( 'The vote type- upvote or downvote', 'easysupport' ),
+		            'required'      => true,
+		        ],
 		    ],
 		    'permission_callback' => [ $this, 'is_admin' ],
 		] );

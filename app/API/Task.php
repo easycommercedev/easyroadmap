@@ -16,7 +16,7 @@ class Task {
 	 * @return WP_REST_Response
 	 */
 	public function move( $request ) {
-	    $task	= $request->get_param( 'task' );
+	    $task	= $request->get_param( 'id' );
 	    $stage	= $request->get_param( 'stage' );
 
 	    wp_set_post_terms( $task, [ $stage ], 'task_stage' );
@@ -36,9 +36,24 @@ class Task {
 	    	'task'		=> [
 	    		'title'			=> $task->post_title,
 	    		'description'	=> wpautop( $task->post_content ),
-	    		'upvotes'		=> get_post_meta( $task->ID, 'upvotes', true ),
-	    		'downvotes'		=> get_post_meta( $task->ID, 'downvotes', true ),
+	    		'upvotes'		=> get_post_meta( $task->ID, 'upvote', true ),
+	    		'downvotes'		=> get_post_meta( $task->ID, 'downvote', true ),
 	    	]
+	    ] );
+	}
+
+	public function vote( $request ) {
+	    $id		= $request->get_param( 'id' );
+	    $type	= $request->get_param( 'type' );
+
+	    $current_vote = get_post_meta( $id, $type, true );
+	    $new_vote = (int) $current_vote + 1;
+
+	    update_post_meta( $id, $type, $new_vote );
+
+	    $this->response_success( [
+	    	'message'	=> __( 'Vote submitted', 'easyroadmap' ),
+	    	'votes'	=> $new_vote,
 	    ] );
 	}
 }

@@ -29,6 +29,7 @@ $tasks = $args['tasks'] ?? [];
         <!-- Modal Content -->
         <div id="modal-content" class="text-gray-700">
             <!-- Task Title -->
+            <input type="hidden" id="modal-id">
             <h2 id="modal-title" class="text-2xl font-bold mb-4">Task Title</h2>
 
             <!-- Task Description -->
@@ -40,13 +41,13 @@ $tasks = $args['tasks'] ?? [];
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="green">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
                     </svg>
-                    <span id="upvote-count">0</span>
+                    <span class="vote-count" id="upvote-count">0</span>
                 </button>
                 <button id="downvote" class="vote-btn flex items-center space-x-2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="red">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
-                    <span id="downvote-count">0</span>
+                    <span class="vote-count" id="downvote-count">0</span>
                 </button>
             </div>
 

@@ -34,6 +34,7 @@ jQuery(function ($) {
     $(".kanban-item").on("click", function () {
         const taskId = $(this).attr("id").replace("task-", ""); // Extract task ID
         $("#modal-overlay").fadeIn();
+        $("#modal-id").val(taskId);
         $("#modal").fadeIn();
 
         // Fetch task details via AJAX
@@ -61,33 +62,22 @@ jQuery(function ($) {
     });
 
     // Handle upvote
-    $("#upvote").on("click", function () {
-        const taskId = $("#modal-title").data("task-id"); // Retrieve task ID from modal
+    $(".vote-btn").on("click", function () {
+        const voteBtn = $(this);
+        const taskId = $("#modal-id").val(); // Retrieve task ID from modal
+        const type = voteBtn.attr('id')
         $.ajax({
-            url: `/path-to-upvote/${taskId}`, // Replace with your API endpoint
+            url: `${EASYROADMAP.api_base}/tasks/${taskId}/vote`, // Replace with your API endpoint
             method: "POST",
-            success: function () {
-                const currentCount = parseInt($("#upvote-count").text());
-                $("#upvote-count").text(currentCount + 1);
+            data: {
+                type: type,
+            },
+            success: function (response) {
+                console.log(response.data.votes);
+                $(".vote-count",voteBtn).text(response.data.votes);
             },
             error: function () {
                 console.error("Error processing upvote.");
-            }
-        });
-    });
-
-    // Handle downvote
-    $("#downvote").on("click", function () {
-        const taskId = $("#modal-title").data("task-id"); // Retrieve task ID from modal
-        $.ajax({
-            url: `/path-to-downvote/${taskId}`, // Replace with your API endpoint
-            method: "POST",
-            success: function () {
-                const currentCount = parseInt($("#downvote-count").text());
-                $("#downvote-count").text(currentCount + 1);
-            },
-            error: function () {
-                console.error("Error processing downvote.");
             }
         });
     });
