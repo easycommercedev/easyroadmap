@@ -3,53 +3,74 @@ namespace EasyRoadmap\Trait;
 
 defined( 'ABSPATH' ) || exit;
 
-/**
- * Trait Auth
- *
- * This trait provides methods to check the current user's roles and statuses in the WordPress plugin.
- *
- * @package EasyRoadmap
- */
 trait Auth {
 
     /**
-     * Check if the current user is a logged-in member.
+     * Check if sandbox/test mode is enabled.
      *
-     * @param WP_REST_Request $request The current request.
-     * @return bool True if the user is logged in, false otherwise.
+     * @return bool True if sandbox mode is enabled, false otherwise.
      */
-    public function is_member( $request ) {
-        return is_user_logged_in();
+    protected function is_sandbox_mode() {
+        return defined( 'EASYROADMAP_SANDBOX' ) && EASYROADMAP_SANDBOX;
     }
 
     /**
-     * Check if the current user has administrator capabilities.
+     * Verifies if it's a human user, not bots
      *
-     * @param WP_REST_Request $request The current request.
-     * @return bool True if the user has administrator capabilities, false otherwise.
+     * @param WP_REST_Request $request The request object.
+     * @return bool True for regular cases, false otherwise.
      */
-    public function is_admin( $request ) {
-        return current_user_can( 'administrator' );
-    }
-
-    /**
-     * Check if the current user has editor capabilities.
-     *
-     * @param WP_REST_Request $request The current request.
-     * @return bool True if the user has editor capabilities, false otherwise.
-     */
-    public function is_editor( $request ) {
-        return current_user_can( 'editor' );
+    public function is_user( $request ) {
+        return __return_true();
     }
 
     /**
      * Check if the current user is a guest (not logged in).
      *
-     * @param WP_REST_Request $request The current request.
-     * @return bool True if the user is not logged in, false otherwise.
+     * @param WP_REST_Request $request The request object.
+     * @return bool True if sandbox mode is disabled and the user is not logged in, false otherwise.
      */
     public function is_guest( $request ) {
-        return ! $this->is_member( $request );
+        return ! $this->is_sandbox_mode() && ! is_user_logged_in();
     }
 
+    /**
+     * Check if the current user is a member.
+     *
+     * @param WP_REST_Request $request The request object.
+     * @return bool True if sandbox mode is enabled or the user is logged in, false otherwise.
+     */
+    public function is_member( $request ) {
+        return $this->is_sandbox_mode() || is_user_logged_in();
+    }
+
+    /**
+     * Check if the current user is a customer.
+     *
+     * @param WP_REST_Request $request The request object.
+     * @return bool True if sandbox mode is enabled or the user is logged in, false otherwise.
+     */
+    public function is_customer( $request ) {
+        return $this->is_sandbox_mode() || $this->is_admin( $request ) || current_user_can( 'customer' );
+    }
+
+    /**
+     * Check if the current user is an editor.
+     *
+     * @param WP_REST_Request $request The request object.
+     * @return bool True if sandbox mode is enabled or the user has editor capabilities, false otherwise.
+     */
+    public function is_editor( $request ) {
+        return $this->is_sandbox_mode() || current_user_can( 'editor' );
+    }
+
+    /**
+     * Check if the current user is an administrator.
+     *
+     * @param WP_REST_Request $request The request object.
+     * @return bool True if sandbox mode is enabled or the user has administrator capabilities, false otherwise.
+     */
+    public function is_admin( $request ) {
+        return $this->is_sandbox_mode() || current_user_can( 'administrator' );
+    }
 }

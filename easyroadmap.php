@@ -32,6 +32,7 @@ define( 'EASYROADMAP_VERSION', '0.9' );
 define( 'EASYROADMAP_PLUGIN_DIR', plugin_dir_path( EASYROADMAP_FILE ) );
 define( 'EASYROADMAP_PLUGIN_URL', plugin_dir_url( EASYROADMAP_FILE ) );
 define( 'EASYROADMAP_ASSETS_URL', EASYROADMAP_PLUGIN_URL . 'assets/' );
+define( 'EASYROADMAP_SANDBOX', true );
 
 require_once 'vendor/autoload.php';
 

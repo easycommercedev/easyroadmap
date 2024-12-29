@@ -21,17 +21,19 @@ class Shortcode {
 		$atts	= shortcode_atts( [ 'product' => null ], $atts, 'roadmap' );
 
 		$tasks	= [];
-		$stages	= get_terms( [ 'taxonomy' => 'task_stage', 'hide_empty' => false ] );
+		$stages	= get_terms( [ 'taxonomy' => 'task_stage', 'hide_empty' => false, 'orderby'  => 'id', 'order' => 'ASC' ] );
 
 		foreach ( $stages as $stage ) {
 			$tasks[ $stage->slug ]['id']	= $stage->term_id;
 			$tasks[ $stage->slug ]['name']	= $stage->name;
 
-			$tax_query = [[
+			$tax_query = [];
+
+			$tax_query[] = [
 				'taxonomy'	=> 'task_stage',
 				'field'		=> 'slug',
 				'terms'		=> $stage->slug,
-		    ]];
+		    ];
 
 			if( ! is_null( $atts['product'] )  ) {
 				$tax_query[] = [

@@ -5,6 +5,7 @@ defined( 'ABSPATH' ) || exit;
 
 use WP_REST_Server;
 use EasyRoadmap\API\Option;
+use EasyRoadmap\API\Task;
 use EasyRoadmap\Trait\Hook;
 use EasyRoadmap\Trait\Auth;
 use EasyRoadmap\Trait\Rest;
@@ -24,6 +25,20 @@ class API {
 
 	public function register_endpoints() {
 
+		/**
+		 * Tasks related APIs
+		 */
+		register_rest_route( $this->namespace, '/tasks/(?P<task>[a-zA-Z0-9-_]+)/move', [
+		    'methods'   => WP_REST_Server::CREATABLE,
+		    'callback'  => [ new Task, 'move' ],
+		    'args'      => [
+		        'stage' => [
+		            'description'   => __( 'The `stage` ID or slug', 'easysupport' ),
+		            'required'      => true,
+		        ],
+		    ],
+		    'permission_callback' => [ $this, 'is_admin' ],
+		] );
 		/**
 		 * Options related APIs
 		 */

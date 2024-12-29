@@ -10,17 +10,16 @@ jQuery(function ($) {
         },
         stop: function (event, ui) {
             const taskId = ui.item.attr("id").replace("task-", ""); // Extract task ID
-            const columnId = ui.item.parent().attr("id").split("-")[1]; // Extract column ID
+            const columnId = ui.item.parent().attr("id").split("stage-")[1]; // Extract column ID
             ui.item.removeClass("dragging"); // Remove tilt effect
             console.log(`Task ID: ${taskId} moved to Column ID: ${columnId}`);
 
             // AJAX call to update the task's new column
             $.ajax({
-                url: `/path-to-update-api`, // Replace with your API endpoint
+                url: `${EASYROADMAP.api_base}/tasks/${taskId}/move`, // Replace with your API endpoint
                 method: "POST",
                 data: {
-                    task_id: taskId,
-                    column_id: columnId,
+                    stage: columnId,
                 },
                 success: function (response) {
                     console.log("Task updated successfully:", response);
