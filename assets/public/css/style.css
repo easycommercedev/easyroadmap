@@ -30,9 +30,11 @@
 /* Column heading styling */
 .er-kanban-column h3 {
     font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
+    font-weight: 500;
     color: #333;
+    background: #ffffff42;
+    padding: 6px 10px;
+    text-align: center;
 }
 
 /* Task item styling */
@@ -40,8 +42,6 @@
     padding: 10px;
     margin: 10px 0;
     background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
     cursor: grab;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }

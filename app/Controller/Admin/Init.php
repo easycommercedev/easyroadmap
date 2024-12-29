@@ -23,7 +23,11 @@ class Init {
 	}
 
 	public function show_taxo_fields( $term ) {
-		$color = get_term_meta( $term->term_id, 'color', true );
+		
+		if( empty( $color = get_term_meta( $term->term_id, 'color', true ) ) ) {
+			$color = easyroadmap_get_random_color();
+		}
+
 		?>
 		<table class="form-table" role="presentation">
 			<tbody>
