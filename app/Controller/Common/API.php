@@ -6,6 +6,7 @@ defined( 'ABSPATH' ) || exit;
 use WP_REST_Server;
 use EasyRoadmap\API\Option;
 use EasyRoadmap\API\Task;
+use EasyRoadmap\API\Stage;
 use EasyRoadmap\Trait\Hook;
 use EasyRoadmap\Trait\Auth;
 use EasyRoadmap\Trait\Rest;
@@ -66,6 +67,21 @@ class API {
 		        ],
 		        'type' => [
 		            'description'   => __( 'The vote type- upvote or downvote', 'easysupport' ),
+		            'required'      => true,
+		        ],
+		    ],
+		    'permission_callback' => [ $this, 'is_admin' ],
+		] );
+
+		/**
+		 * Stage related APIs
+		 */
+		register_rest_route( $this->namespace, '/stages/order', [
+		    'methods'   => WP_REST_Server::CREATABLE,
+		    'callback'  => [ new Stage, 'order' ],
+		    'args'      => [
+		        'order' => [
+		            'description'   => __( 'The order', 'easysupport' ),
 		            'required'      => true,
 		        ],
 		    ],

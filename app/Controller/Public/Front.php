@@ -21,7 +21,7 @@ class Front {
 	public function add_assets() {
 
 		$this->enqueue_style(
-			'easyroadmap',
+			'easyroadmap-public',
 			EASYROADMAP_ASSETS_URL . 'public/css/style.css'
 		);
 
@@ -29,19 +29,8 @@ class Front {
 		wp_enqueue_script( 'jquery-ui-sortable' );
 		
 		$this->enqueue_script(
-			'easyroadmap',
+			'easyroadmap-public',
 			EASYROADMAP_ASSETS_URL . 'public/js/script.js'
-		);
-
-		// Localize
-		$localized = [
-			'api_base'	=> rest_url( '/easyroadmap/v1' )
-		];
-
-		$this->localize_script(
-		    'easyroadmap',
-		    'EASYROADMAP',
-		    apply_filters( 'easyroadmap-localized_vars', $localized )
 		);
 	}
 
