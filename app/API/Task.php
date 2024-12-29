@@ -56,4 +56,23 @@ class Task {
 	    	'votes'	=> $new_vote,
 	    ] );
 	}
+	
+	/**
+	 * Sort task orders
+	 *
+	 * @param WP_REST_Request $request
+	 * @return WP_REST_Response
+	 */
+	public function order( $request ) {
+	    $order	= $request->get_param( 'order' );
+
+	    foreach ( $order as $position => $task_id ) {
+	        $task_id = (int) str_replace( 'er-task-', '', $task_id );
+	        
+	        // update_post_meta( $task_id, 'menu_order', $position );
+	        wp_update_post( [ 'ID' => $task_id, 'menu_order' => $position ] );
+	    }
+
+	    $this->response_success( [ 'message' => __( 'Task order changed', 'easyroadmap' ) ] );
+	}
 }

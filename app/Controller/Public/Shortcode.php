@@ -46,7 +46,9 @@ class Shortcode {
 			$tasks[ $stage->slug ]['tasks']	= Utility::get_posts( [
 				'post_type'			=> 'task',
 				'tax_query' 		=> $tax_query,
-				'posts_per_page'	=> -1
+				'posts_per_page'	=> -1,
+				'orderby'        => 'menu_order',
+				'order'          => 'ASC'
 			] );
 		}
 		

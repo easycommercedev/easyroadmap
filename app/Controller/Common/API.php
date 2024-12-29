@@ -72,6 +72,18 @@ class API {
 		    ],
 		    'permission_callback' => [ $this, 'is_admin' ],
 		] );
+		
+		register_rest_route( $this->namespace, '/tasks/order', [
+		    'methods'   => WP_REST_Server::CREATABLE,
+		    'callback'  => [ new Task, 'order' ],
+		    'args'      => [
+		        'order' => [
+		            'description'   => __( 'The order', 'easysupport' ),
+		            'required'      => true,
+		        ],
+		    ],
+		    'permission_callback' => [ $this, 'is_admin' ],
+		] );
 
 		/**
 		 * Stage related APIs

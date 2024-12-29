@@ -27,6 +27,20 @@ jQuery(function ($) {
                     console.error(error);
                 }
             });
+
+            $.ajax({
+                url: `${EASYROADMAP.api_base}/tasks/order`,
+                method: "POST",
+                data: {
+                    order: $(this).sortable('toArray', {attribute: 'id'})
+                },
+                success: function (response) {
+                    console.log(response);
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
         }
     }).disableSelection();
 
