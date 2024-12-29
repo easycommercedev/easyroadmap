@@ -66,7 +66,7 @@ class Init {
 		<?php
 	}
 
-	public function save_taxo_fields( $term_id, $tt_id ) {
+	public function save_edit_taxo_fields( $term_id, $tt_id ) {
 	    if ( isset( $_POST['color'] ) ) {
 	        update_term_meta( $term_id, 'color', $this->sanitize( $_POST['color'] ) );
 	    }

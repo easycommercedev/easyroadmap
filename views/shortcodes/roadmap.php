@@ -28,12 +28,12 @@ $tasks = $args['tasks'] ?? [];
 
             <div class="er-flex er-items-center er-space-x-2 er-mb-4">
                 <span id="er-upvote" data-type="upvote" class="er-vote-btn er-flex er-items-center er-space-x-2">
-                    👍
-                    <span class="er-vote-count" id="er-upvote-count">0</span>
+                    👍 <?php _e( 'Upvote', 'easyroadmap' ); ?>
+                    (<span class="er-vote-count" id="er-upvote-count">0</span>)
                 </span>
                 <span id="er-downvote" data-type="downvote" class="er-vote-btn er-flex er-items-center er-space-x-2">
-                     👎
-                    <span class="er-vote-count" id="er-downvote-count">0</span>
+                    👎 <?php _e( 'Downvote', 'easyroadmap' ); ?>
+                    (<span class="er-vote-count" id="er-downvote-count">0</span>)
                 </span>
             </div>
 
