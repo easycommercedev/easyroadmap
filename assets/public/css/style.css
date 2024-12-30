@@ -12,7 +12,6 @@
 }
 .er-kanban-columns {
     justify-content: center;
-    gap: 16px;
     margin-top: 40px;
 }
 .er-kanban-column {
@@ -24,8 +23,8 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .er-kanban-column h3 {
-    font-size: 1.25rem;
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: 400;
     color: #333;
     background: #ffffff42;
     padding: 6px 10px;
@@ -129,44 +128,4 @@
     font-size: 1rem;
     font-weight: bold;
     color: #333;
-}
-#er-comments-section {
-    margin-top: 20px;
-    border-top: 1px solid #eee;
-    padding-top: 10px;
-}
-#er-comments-list {
-    list-style-type: none;
-    padding: 0;
-    margin-bottom: 10px;
-}
-#er-comments-list li {
-    padding: 8px;
-    margin-bottom: 5px;
-    background: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 0.875rem;
-    color: #333;
-}
-#er-comment-input {
-    width: 100%;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 10px;
-    font-size: 0.875rem;
-    margin-bottom: 10px;
-}
-#er-add-comment {
-    display: inline-block;
-    background: #007bff;
-    color: #fff;
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-size: 0.875rem;
-    cursor: pointer;
-    border: none;
-}
-#er-add-comment:hover {
-    background: #0056b3;
 }
