@@ -1,6 +1,7 @@
 jQuery(function ($) {
 
     $(".task-editor .er-kanban-column").sortable({
+        items: ".er-kanban-item", // Restrict sorting to the kanban items only
         connectWith: ".er-kanban-column",
         placeholder: "er-ui-state-highlight",
         delay: 150,
