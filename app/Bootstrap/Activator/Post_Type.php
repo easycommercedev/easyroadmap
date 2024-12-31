@@ -34,7 +34,8 @@ class Post_Type {
 			'capability_type'    => 'page',
 			'has_archive'        => true,
 			'hierarchical'       => false,
-			'menu_position'      => null,
+			'menu_position'      => 4,
+			'menu_icon'			 => 'dashicons-calendar-alt',
 			'supports'           => [ 'title', 'editor', 'author', 'comments' ],
 			'show_in_rest'       => false,
 		];
