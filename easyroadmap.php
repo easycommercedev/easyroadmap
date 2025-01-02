@@ -39,7 +39,7 @@ require_once 'vendor/autoload.php';
 /**
  * Register the activation hook.
  * This hook is triggered when the plugin is activated.
- * It installs necessary database tables, sets initial seeds, 
+ * It installs necessary database tables, sets initial seeds,
  * and checks database versions.
  */
 register_activation_hook( EASYROADMAP_FILE, __NAMESPACE__ . '\\easyroadmap_install' );
@@ -50,7 +50,7 @@ function easyroadmap_install() {
 /**
  * Register the deactivation hook.
  * This hook is triggered when the plugin is activated.
- * It uninstalls necessary database tables, sets initial seeds, 
+ * It uninstalls necessary database tables, sets initial seeds,
  * and checks database versions.
  */
 register_deactivation_hook( EASYROADMAP_FILE, __NAMESPACE__ . '\\easyroadmap_uninstall' );
@@ -61,7 +61,7 @@ function easyroadmap_uninstall() {
 /**
  * Add action for plugins_loaded to activate the plugin.
  * This action is triggered when all active plugins are fully loaded.
- * It sets up cron jobs, registers custom user roles, and performs other 
+ * It sets up cron jobs, registers custom user roles, and performs other
  * necessary activation tasks.
  */
 add_action( 'plugins_loaded', __NAMESPACE__ . '\\easyroadmap_activate' );

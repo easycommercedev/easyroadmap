@@ -18,7 +18,7 @@ class Menu {
 	 * Constructor to add all hooks.
 	 */
 	public function __construct() {
-		$this->action( 'admin_menu', [ $this, 'register' ] );
+		$this->action( 'admin_menu', array( $this, 'register' ) );
 	}
 
 	public function register() {
@@ -29,12 +29,11 @@ class Menu {
 			__( 'Settings', 'easyroadmap' ),
 			'manage_options',
 			'easyroadmap-settings',
-			[ $this, 'callback_submenu' ]
+			array( $this, 'callback_submenu' )
 		);
 	}
 
 	public function callback_submenu() {
 		echo Utility::get_template( 'settings/layout.php' );
 	}
-
 }

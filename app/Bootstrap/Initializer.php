@@ -28,7 +28,7 @@ class Initializer {
 				$controller = "\\EasyRoadmap\\Controller\\Admin\\{$class_name}";
 
 				if ( class_exists( $controller ) ) {
-					new $controller;
+					new $controller();
 				}
 			}
 		}
@@ -46,7 +46,7 @@ class Initializer {
 				$controller = "\\EasyRoadmap\\Controller\\Public\\{$class_name}";
 
 				if ( class_exists( $controller ) ) {
-					new $controller;
+					new $controller();
 				}
 			}
 		}
@@ -63,9 +63,8 @@ class Initializer {
 			$controller = "\\EasyRoadmap\\Controller\\Common\\{$class_name}";
 
 			if ( class_exists( $controller ) ) {
-				new $controller;
+				new $controller();
 			}
 		}
 	}
-
 }

@@ -1,66 +1,66 @@
 #easyroadmap-settings-body {
-    display: grid;
-    gap: 30px;
-    grid-template-columns: 1fr 3fr;
-    max-width: 900px;
+	display: grid;
+	gap: 30px;
+	grid-template-columns: 1fr 3fr;
+	max-width: 900px;
 }
 #easyroadmap-settings-header {
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ddd;
-    padding: 10px 0;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #ddd;
+	padding: 10px 0;
 }
 #easyroadmap-settings-menus-list > li {
-    padding: 10px 0;
-    border-bottom: 1px solid #ddd;
-    margin: 0;
+	padding: 10px 0;
+	border-bottom: 1px solid #ddd;
+	margin: 0;
 }
 #easyroadmap-settings-menus-list > li.active {
-    font-weight: bold;
+	font-weight: bold;
 }
 #easyroadmap-settings-submenus-list {
-    display: flex;
+	display: flex;
 }
 .easyroadmap-settings-section {
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 6px;
-    margin-bottom: 10px;
+	border: 1px solid #ddd;
+	padding: 10px;
+	border-radius: 6px;
+	margin-bottom: 10px;
 }
 #easyroadmap-settings-header > h2 {
-    font-size: 24px;
+	font-size: 24px;
 }
 #easyroadmap-settings-content-label > h3 {
-    font-size: 20px;
+	font-size: 20px;
 }
 #easyroadmap-settings-submenus-list > li {
-    border-right: 1px solid #ddd;
-    padding: 0 10px;
+	border-right: 1px solid #ddd;
+	padding: 0 10px;
 }
 #easyroadmap-settings-submenus-list > li:first-child {
-    padding-left: 0px;
+	padding-left: 0px;
 }
 #easyroadmap-settings-submenus-list > li:last-child {
-    border-right: 0px;
+	border-right: 0px;
 }
 #easyroadmap-settings-submenus-list > li > a {
-    text-decoration: none;
+	text-decoration: none;
 }
 #easyroadmap-settings-submenus-list > li.active > a {
-    font-weight: bold;
+	font-weight: bold;
 }
 #easyroadmap-settings-content-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
 }
 .easyroadmap-settings-section-heading {
-    font-size: 16px;
+	font-size: 16px;
 }
 .easyroadmap-field-wrapper {
-    padding: 10px 0;
-    border-top: 1px solid #ddd;
+	padding: 10px 0;
+	border-top: 1px solid #ddd;
 }
 .easyroadmap-field-wrapper label {
-    display: inline-block;
-    width: 100px;
+	display: inline-block;
+	width: 100px;
 }

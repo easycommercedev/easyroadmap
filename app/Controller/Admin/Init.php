@@ -18,12 +18,12 @@ class Init {
 	 * Constructor to add all hooks.
 	 */
 	public function __construct() {
-		$this->action( 'task_stage_add_form_fields', [ $this, 'show_add_taxo_fields' ] );
-		$this->action( 'created_term', [ $this, 'save_add_taxo_fields' ], 10, 3 );
-		$this->action( 'task_stage_edit_form', [ $this, 'show_edit_taxo_fields' ] );
-		$this->action( 'edited_task_stage', [ $this, 'save_edit_taxo_fields' ], 10, 2 );
-		$this->filter( 'manage_edit-task_stage_columns', [ $this, 'add_color_column' ] );
-		$this->filter( 'manage_task_stage_custom_column', [ $this, 'populate_color_column' ], 10, 3 );
+		$this->action( 'task_stage_add_form_fields', array( $this, 'show_add_taxo_fields' ) );
+		$this->action( 'created_term', array( $this, 'save_add_taxo_fields' ), 10, 3 );
+		$this->action( 'task_stage_edit_form', array( $this, 'show_edit_taxo_fields' ) );
+		$this->action( 'edited_task_stage', array( $this, 'save_edit_taxo_fields' ), 10, 2 );
+		$this->filter( 'manage_edit-task_stage_columns', array( $this, 'add_color_column' ) );
+		$this->filter( 'manage_task_stage_custom_column', array( $this, 'populate_color_column' ), 10, 3 );
 	}
 
 	public function show_add_taxo_fields() {
@@ -75,11 +75,11 @@ class Init {
 	 */
 	public function add_color_column( $columns ) {
 
-	    $start		= array_slice( $columns, 0, 1, true );
-	    $end		= array_slice( $columns, 1, null, true );
-	    $columns	= $start + [ 'color' => '' ] + $end;
+		$start   = array_slice( $columns, 0, 1, true );
+		$end     = array_slice( $columns, 1, null, true );
+		$columns = $start + array( 'color' => '' ) + $end;
 
-	    return $columns;
+		return $columns;
 	}
 
 
@@ -89,7 +89,7 @@ class Init {
 	public function populate_color_column( $content, $column_name, $term_id ) {
 
 		if ( 'color' === $column_name ) {
-			$color = get_term_meta( $term_id, 'color', true );
+			$color   = get_term_meta( $term_id, 'color', true );
 			$content = $color ? sprintf( '<div style="width: 30px; height: 30px; background-color: %s; border-radius: 4px;"></div>', esc_attr( $color ) ) : '';
 		}
 

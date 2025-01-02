@@ -10,8 +10,8 @@ defined( 'ABSPATH' ) || exit;
  */
 class URL extends Text {
 
-    public function __construct( $config = [] ) {
-        parent::__construct( $config );
-        $this->set_type( 'url' );
-    }
+	public function __construct( $config = array() ) {
+		parent::__construct( $config );
+		$this->set_type( 'url' );
+	}
 }

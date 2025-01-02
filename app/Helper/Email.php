@@ -9,18 +9,18 @@ defined( 'ABSPATH' ) || exit;
 class Email {
 
 	private $header;
-	
+
 	private $body;
-	
+
 	private $footer;
-	
+
 	private $subject;
-	
-	private $headers = [];
-	
-	private $attachments = [];
-	
-	private $recipients = [];
+
+	private $headers = array();
+
+	private $attachments = array();
+
+	private $recipients = array();
 
 	/**
 	 * Sets the header content.
@@ -120,7 +120,7 @@ class Email {
 		if ( is_array( $recipients ) ) {
 			$this->recipients = $recipients;
 		} else {
-			$this->recipients = [ $recipients ];
+			$this->recipients = array( $recipients );
 		}
 	}
 
@@ -128,18 +128,18 @@ class Email {
 	 * Loads and sets the email template.
 	 *
 	 * @param string $template_name The name of the template file (without extension).
-	 * @param array $args Optional. Associative array of variables to pass to the template.
+	 * @param array  $args Optional. Associative array of variables to pass to the template.
 	 */
-	public function set_template( $template_name, $args = [] ) {
+	public function set_template( $template_name, $args = array() ) {
 		$template_path = EASYROADMAP_PLUGIN_DIR . 'views/emails/' . $template_name . '.php';
-		
+
 		if ( file_exists( $template_path ) ) {
 			if ( ! empty( $args ) && is_array( $args ) ) {
 				foreach ( $args as $key => $value ) {
 					${$key} = $value;
 				}
 			}
-			
+
 			ob_start();
 			include $template_path;
 			$template_content = ob_get_clean();
@@ -155,7 +155,7 @@ class Email {
 	 */
 	public function send() {
 		$email_content = $this->header . $this->body . $this->footer;
-		$to = implode( ',', $this->recipients );
+		$to            = implode( ',', $this->recipients );
 		return wp_mail( $to, $this->subject, $email_content, $this->headers, $this->attachments );
 	}
 }

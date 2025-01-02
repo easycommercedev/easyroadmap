@@ -11,14 +11,14 @@ defined( 'ABSPATH' ) || exit;
  * @package EasyRoadmap
  */
 trait Hook {
-	
+
 	/**
 	 * Registers an action hook.
 	 *
-	 * @param string $tag The name of the action.
+	 * @param string   $tag The name of the action.
 	 * @param callable $callback The callback function.
-	 * @param int $priority The order of execution. Default is 10.
-	 * @param int $accepted_args The number of accepted arguments. Default is 1.
+	 * @param int      $priority The order of execution. Default is 10.
+	 * @param int      $accepted_args The number of accepted arguments. Default is 1.
 	 */
 	public function add_action( $tag, $callback, $priority = 10, $accepted_args = 1 ) {
 		if ( is_callable( $callback ) ) {
@@ -36,10 +36,10 @@ trait Hook {
 	/**
 	 * Registers a filter hook.
 	 *
-	 * @param string $tag The name of the filter.
+	 * @param string   $tag The name of the filter.
 	 * @param callable $callback The callback function.
-	 * @param int $priority The order of execution. Default is 10.
-	 * @param int $accepted_args The number of accepted arguments. Default is 1.
+	 * @param int      $priority The order of execution. Default is 10.
+	 * @param int      $accepted_args The number of accepted arguments. Default is 1.
 	 */
 	public function add_filter( $tag, $callback, $priority = 10, $accepted_args = 1 ) {
 		if ( is_callable( $callback ) ) {
@@ -57,7 +57,7 @@ trait Hook {
 	/**
 	 * Registers a shortcode.
 	 *
-	 * @param string $tag The shortcode tag.
+	 * @param string   $tag The shortcode tag.
 	 * @param callable $callback The callback function.
 	 */
 	public function add_shortcode( $tag, $callback ) {
@@ -76,7 +76,7 @@ trait Hook {
 	/**
 	 * Registers an AJAX action for logged-in users.
 	 *
-	 * @param string $action The AJAX action.
+	 * @param string   $action The AJAX action.
 	 * @param callable $callback The callback function.
 	 */
 	public function ajax_priv( $action, $callback ) {
@@ -88,7 +88,7 @@ trait Hook {
 	/**
 	 * Registers an AJAX action for non-logged-in users.
 	 *
-	 * @param string $action The AJAX action.
+	 * @param string   $action The AJAX action.
 	 * @param callable $callback The callback function.
 	 */
 	public function ajax_nopriv( $action, $callback ) {

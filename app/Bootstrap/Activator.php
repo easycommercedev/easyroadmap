@@ -13,11 +13,11 @@ class Activator {
 	 * Static method for plugin activation tasks.
 	 */
 	public static function activate() {
-	    $activator = new self();
+		$activator = new self();
 
-	    $activator->set_cron();
-	    $activator->register_post_types();
-	    $activator->register_taxonomies();
+		$activator->set_cron();
+		$activator->register_post_types();
+		$activator->register_taxonomies();
 
 		// Set a flag that indicates the plugin has been activated
 		update_option( 'easyroadmap_activated', true );
@@ -28,11 +28,10 @@ class Activator {
 	}
 
 	public function register_post_types() {
-		$this->action( 'init', [ new Activator\Post_Type, 'register' ] );
+		$this->action( 'init', array( new Activator\Post_Type(), 'register' ) );
 	}
 
 	public function register_taxonomies() {
-		$this->action( 'init', [ new Activator\Taxonomy, 'register' ] );
+		$this->action( 'init', array( new Activator\Taxonomy(), 'register' ) );
 	}
-
 }

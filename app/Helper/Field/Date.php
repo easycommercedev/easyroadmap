@@ -10,8 +10,8 @@ defined( 'ABSPATH' ) || exit;
  */
 class Date extends Text {
 
-    public function __construct( $config = [] ) {
-        parent::__construct( $config );
-        $this->set_type( 'date' );
-    }
+	public function __construct( $config = array() ) {
+		parent::__construct( $config );
+		$this->set_type( 'date' );
+	}
 }

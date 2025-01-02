@@ -11,7 +11,7 @@ defined( 'ABSPATH' ) || exit;
  * @package EasyRoadmap
  */
 trait Cache {
-	
+
 	/**
 	 * Checks if external object cache is in use and returns true or false.
 	 *
@@ -25,14 +25,13 @@ trait Cache {
 	 * Sets a cache value using either object cache or transients based on availability.
 	 *
 	 * @param string $key The cache key to store the value under.
-	 * @param mixed $value The value to store in the cache.
-	 * @param int $expiration Optional. The time until expiration, in seconds. Default 3600 (1 hour).
+	 * @param mixed  $value The value to store in the cache.
+	 * @param int    $expiration Optional. The time until expiration, in seconds. Default 3600 (1 hour).
 	 */
 	public function set_cache( $key, $value, $expiration = 3600 ) {
 		if ( $this->is_using_object_cache() ) {
 			wp_cache_set( $key, $value, '', $expiration );
-		}
-		else {
+		} else {
 			set_transient( $key, $value, $expiration );
 		}
 	}
@@ -47,7 +46,7 @@ trait Cache {
 		if ( $this->is_using_object_cache() ) {
 			return wp_cache_get( $key );
 		}
-		
+
 		return get_transient( $key );
 	}
 
@@ -59,8 +58,7 @@ trait Cache {
 	public function delete_cache( $key ) {
 		if ( $this->is_using_object_cache() ) {
 			wp_cache_delete( $key );
-		}
-		else {
+		} else {
 			delete_transient( $key );
 		}
 	}

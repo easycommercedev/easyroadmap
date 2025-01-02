@@ -21,7 +21,7 @@ trait Asset {
 	 * @param string $ver       Script version, defaults to the constant EASYROADMAP_VERSION.
 	 * @param bool   $in_footer Whether to enqueue the script in the footer.
 	 */
-	public function register_script( $handle, $src, $deps = [], $ver = null, $in_footer = true ) {
+	public function register_script( $handle, $src, $deps = array(), $ver = null, $in_footer = true ) {
 		wp_register_script( $handle, $src, $deps, $ver ?: EASYROADMAP_VERSION, $in_footer );
 	}
 
@@ -34,7 +34,7 @@ trait Asset {
 	 * @param string $ver       Script version, defaults to the constant EASYROADMAP_VERSION.
 	 * @param bool   $in_footer Whether to enqueue the script in the footer.
 	 */
-	public function enqueue_script( $handle, $src, $deps = [], $ver = null, $in_footer = true  ) {
+	public function enqueue_script( $handle, $src, $deps = array(), $ver = null, $in_footer = true ) {
 		if ( ! wp_script_is( $handle, 'registered' ) ) {
 			$this->register_script( $handle, $src, $deps, $ver, $in_footer );
 		}
@@ -62,7 +62,7 @@ trait Asset {
 	 * @param string $ver    Style version, defaults to the constant EASYROADMAP_VERSION.
 	 * @param string $media  Media for which this stylesheet has been defined.
 	 */
-	public function register_style( $handle, $src, $deps = [], $ver = null, $media = 'all' ) {
+	public function register_style( $handle, $src, $deps = array(), $ver = null, $media = 'all' ) {
 		wp_register_style( $handle, $src, $deps, $ver ?: EASYROADMAP_VERSION, $media );
 	}
 
@@ -75,7 +75,7 @@ trait Asset {
 	 * @param string $ver    Style version, defaults to the constant EASYROADMAP_VERSION.
 	 * @param string $media  Media for which this stylesheet has been defined.
 	 */
-	public function enqueue_style( $handle, $src, $deps = [], $ver = null, $media = 'all' ) {
+	public function enqueue_style( $handle, $src, $deps = array(), $ver = null, $media = 'all' ) {
 		if ( ! wp_style_is( $handle, 'registered' ) ) {
 			$this->register_style( $handle, $src, $deps, $ver, $media );
 		}

@@ -15,12 +15,12 @@ class Front {
 	 * Constructor to add all hooks.
 	 */
 	public function __construct() {
-		$this->filter( 'body_class', [ $this, 'add_body_class' ] );
-		$this->action( 'wp_enqueue_scripts', [ $this, 'add_assets' ] );
+		$this->filter( 'body_class', array( $this, 'add_body_class' ) );
+		$this->action( 'wp_enqueue_scripts', array( $this, 'add_assets' ) );
 	}
 
 	public function add_body_class( $classes ) {
-		if( current_user_can( 'edit_pages' ) ) {
+		if ( current_user_can( 'edit_pages' ) ) {
 			$classes[] = 'task-editor';
 		}
 
@@ -36,11 +36,10 @@ class Front {
 
 		wp_enqueue_script( 'jquery' );
 		wp_enqueue_script( 'jquery-ui-sortable' );
-		
+
 		$this->enqueue_script(
 			'easyroadmap-public',
 			EASYROADMAP_ASSETS_URL . 'public/js/script.js'
 		);
 	}
-
 }

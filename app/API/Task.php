@@ -8,7 +8,7 @@ use EasyRoadmap\Trait\Rest;
 class Task {
 
 	use Rest;
-	
+
 	/**
 	 * Move a task to a stage
 	 *
@@ -16,47 +16,51 @@ class Task {
 	 * @return WP_REST_Response
 	 */
 	public function move( $request ) {
-	    $task	= $request->get_param( 'id' );
-	    $stage	= $request->get_param( 'stage' );
+		$task  = $request->get_param( 'id' );
+		$stage = $request->get_param( 'stage' );
 
-	    wp_set_post_terms( $task, [ $stage ], 'task_stage' );
+		wp_set_post_terms( $task, array( $stage ), 'task_stage' );
 
-	    $this->response_success( [ 'message' => __( 'Task moved', 'easyroadmap' ) ] );
+		$this->response_success( array( 'message' => __( 'Task moved', 'easyroadmap' ) ) );
 	}
 
 	/**
 	 * Get a task details
 	 */
 	public function get( $request ) {
-	    $id	= $request->get_param( 'id' );
-	    $task = get_post( $id );
+		$id   = $request->get_param( 'id' );
+		$task = get_post( $id );
 
-	    $this->response_success( [
-	    	'message'	=> __( 'Task found', 'easyroadmap' ),
-	    	'task'		=> [
-	    		'title'			=> $task->post_title,
-	    		'description'	=> wpautop( $task->post_content ),
-	    		'upvotes'		=> get_post_meta( $task->ID, 'upvote', true ),
-	    		'downvotes'		=> get_post_meta( $task->ID, 'downvote', true ),
-	    	]
-	    ] );
+		$this->response_success(
+			array(
+				'message' => __( 'Task found', 'easyroadmap' ),
+				'task'    => array(
+					'title'       => $task->post_title,
+					'description' => wpautop( $task->post_content ),
+					'upvotes'     => get_post_meta( $task->ID, 'upvote', true ),
+					'downvotes'   => get_post_meta( $task->ID, 'downvote', true ),
+				),
+			)
+		);
 	}
 
 	public function vote( $request ) {
-	    $id		= $request->get_param( 'id' );
-	    $type	= $request->get_param( 'type' );
+		$id   = $request->get_param( 'id' );
+		$type = $request->get_param( 'type' );
 
-	    $current_vote = get_post_meta( $id, $type, true );
-	    $new_vote = (int) $current_vote + 1;
+		$current_vote = get_post_meta( $id, $type, true );
+		$new_vote     = (int) $current_vote + 1;
 
-	    update_post_meta( $id, $type, $new_vote );
+		update_post_meta( $id, $type, $new_vote );
 
-	    $this->response_success( [
-	    	'message'	=> __( 'Vote submitted', 'easyroadmap' ),
-	    	'votes'	=> $new_vote,
-	    ] );
+		$this->response_success(
+			array(
+				'message' => __( 'Vote submitted', 'easyroadmap' ),
+				'votes'   => $new_vote,
+			)
+		);
 	}
-	
+
 	/**
 	 * Sort task orders
 	 *
@@ -64,15 +68,20 @@ class Task {
 	 * @return WP_REST_Response
 	 */
 	public function order( $request ) {
-	    $order	= $request->get_param( 'order' );
+		$order = $request->get_param( 'order' );
 
-	    foreach ( $order as $position => $task_id ) {
-	        $task_id = (int) str_replace( 'er-task-', '', $task_id );
-	        
-	        // update_post_meta( $task_id, 'menu_order', $position );
-	        wp_update_post( [ 'ID' => $task_id, 'menu_order' => $position ] );
-	    }
+		foreach ( $order as $position => $task_id ) {
+			$task_id = (int) str_replace( 'er-task-', '', $task_id );
 
-	    $this->response_success( [ 'message' => __( 'Task order changed', 'easyroadmap' ) ] );
+			// update_post_meta( $task_id, 'menu_order', $position );
+			wp_update_post(
+				array(
+					'ID'         => $task_id,
+					'menu_order' => $position,
+				)
+			);
+		}
+
+		$this->response_success( array( 'message' => __( 'Task order changed', 'easyroadmap' ) ) );
 	}
 }

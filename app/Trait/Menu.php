@@ -24,15 +24,15 @@ trait Menu {
 	 * @param int      $position   Optional. The position in the menu order this item should appear.
 	 */
 	public function add_menu( $page_title, $menu_title, $capability, $menu_slug, $callback = '', $icon_url = '', $position = null ) {
-		
+
 		global $easyroadmap_menus;
 
 		if ( ! isset( $easyroadmap_menus ) ) {
-			$easyroadmap_menus = [];
+			$easyroadmap_menus = array();
 		}
 
 		if ( ! isset( $easyroadmap_menus[ $menu_slug ] ) ) {
-			$easyroadmap_menus[ $menu_slug ] = [];
+			$easyroadmap_menus[ $menu_slug ] = array();
 		}
 
 		add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $callback, $icon_url, $position );
@@ -50,15 +50,15 @@ trait Menu {
 	 * @param int      $position    Optional. The position in the menu order this item should appear.
 	 */
 	public function add_submenu( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $callback = '', $position = null ) {
-		
+
 		global $easyroadmap_menus;
 
 		if ( ! isset( $easyroadmap_menus ) ) {
-			$easyroadmap_menus = [];
+			$easyroadmap_menus = array();
 		}
 
 		if ( ! isset( $easyroadmap_menus[ $parent_slug ] ) ) {
-			$easyroadmap_menus[ $parent_slug ] = [];
+			$easyroadmap_menus[ $parent_slug ] = array();
 		}
 
 		$easyroadmap_menus[ $parent_slug ][] = $menu_slug;

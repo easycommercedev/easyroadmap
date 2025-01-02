@@ -4,13 +4,13 @@ use EasyCommerce\Helper\Utility;
 $menus = easyroadmap_settings_menus();
 
 $active_menu_id = isset( $_GET['menu'] ) && array_key_exists( $_GET['menu'], $menus ) ? sanitize_key( $_GET['menu'] ) : array_key_first( $menus );
-$active_menu = $menus[ $active_menu_id ];
+$active_menu    = $menus[ $active_menu_id ];
 
-$submenus = isset( $active_menu['submenus'] ) && is_array( $active_menu['submenus'] ) ? $active_menu['submenus'] : [];
+$submenus          = isset( $active_menu['submenus'] ) && is_array( $active_menu['submenus'] ) ? $active_menu['submenus'] : array();
 $active_submenu_id = isset( $_GET['submenu'] ) && array_key_exists( $_GET['submenu'], $submenus ) ? sanitize_key( $_GET['submenu'] ) : array_key_first( $submenus );
 
-$admin_menu = admin_url( 'admin.php' );
-$option_key = "easyroadmap-{$active_menu_id}-{$active_submenu_id}";
+$admin_menu   = admin_url( 'admin.php' );
+$option_key   = "easyroadmap-{$active_menu_id}-{$active_submenu_id}";
 $saved_option = get_option( $option_key );
 
 ?>
@@ -31,7 +31,15 @@ $saved_option = get_option( $option_key );
 						'<li id="%1$s" class="%2$s"><a href="%3$s">%4$s</a></li>',
 						esc_attr( $menu_id ),
 						esc_attr( $active_menu_id == $menu_id ? 'active' : '' ),
-						esc_url( add_query_arg( [ 'page' => 'easyroadmap-settings', 'menu' => $menu_id ], $admin_menu ) ),
+						esc_url(
+							add_query_arg(
+								array(
+									'page' => 'easyroadmap-settings',
+									'menu' => $menu_id,
+								),
+								$admin_menu
+							)
+						),
 						esc_html( $menu['label'] )
 					);
 				}
@@ -54,7 +62,7 @@ $saved_option = get_option( $option_key );
 					</div>
 				</div>
 
-				<?php if( count( $submenus ) > 1 ) : ?>
+				<?php if ( count( $submenus ) > 1 ) : ?>
 				<div id="easyroadmap-settings-submenus">
 					<ul id="easyroadmap-settings-submenus-list">
 					<?php
@@ -63,7 +71,16 @@ $saved_option = get_option( $option_key );
 							'<li id="%1$s" class="%2$s"><a href="%3$s">%4$s</a></li>',
 							esc_attr( $submenu_id ),
 							esc_attr( $active_submenu_id == $submenu_id ? 'active' : '' ),
-							esc_url( add_query_arg( [ 'page' => 'easyroadmap-settings', 'menu' => $active_menu_id, 'submenu' => $submenu_id ], $admin_menu ) ),
+							esc_url(
+								add_query_arg(
+									array(
+										'page'    => 'easyroadmap-settings',
+										'menu'    => $active_menu_id,
+										'submenu' => $submenu_id,
+									),
+									$admin_menu
+								)
+							),
 							esc_html( $submenu['label'] )
 						);
 					}
@@ -74,31 +91,30 @@ $saved_option = get_option( $option_key );
 
 				<div id="easyroadmap-settings-sections">
 					<?php
-					$sections = $menus[ $active_menu_id ]['submenus'][ $active_submenu_id ]['sections'] ?? [];
-					
-					foreach( $sections as $section_id => $section ) {
+					$sections = $menus[ $active_menu_id ]['submenus'][ $active_submenu_id ]['sections'] ?? array();
+
+					foreach ( $sections as $section_id => $section ) {
 						printf( '<div class="easyroadmap-settings-section" id="easyroadmap-settings-section-%1$s">', esc_attr( $section_id ) );
-						
-						if( ! empty( $section['label'] ) ) {
+
+						if ( ! empty( $section['label'] ) ) {
 							printf( '<h2 class="easyroadmap-settings-section-heading">%1$s</h2>', esc_html( $section['label'] ) );
 						}
 
-						if( ! empty( $section['desc'] ) ) {
+						if ( ! empty( $section['desc'] ) ) {
 							printf( '<p class="easyroadmap-settings-section-desc">%1$s</p>', esc_html( $section['desc'] ) );
 						}
 
-						foreach( $section['fields'] as $field ) {
+						foreach ( $section['fields'] as $field ) {
 
-							if( class_exists( $field_factory = easyroadmap_get_field_factory( $field['type'] ) ) ) {
-							
-								if( isset( $saved_option[ $field['id'] ] ) ) {
+							if ( class_exists( $field_factory = easyroadmap_get_field_factory( $field['type'] ) ) ) {
+
+								if ( isset( $saved_option[ $field['id'] ] ) ) {
 									$field['value'] = $saved_option[ $field['id'] ];
 								}
 
 								$field_obj = new $field_factory( $field );
 								echo $field_obj->render();
 							}
-							
 						}
 
 						printf( '<input type="submit" class="button" value="%1$s">', esc_attr( __( 'Save Settings', 'easyroadmap' ) ) );

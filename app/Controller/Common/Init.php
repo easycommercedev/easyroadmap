@@ -15,11 +15,11 @@ class Init {
 	 * Constructor to add all hooks.
 	 */
 	public function __construct() {
-		$this->action( 'wp_head', [ $this, 'modal' ] );
-		$this->action( 'admin_head', [ $this, 'modal' ] );
-		$this->action( 'wp_enqueue_scripts', [ $this, 'add_assets' ] );
-		$this->action( 'admin_enqueue_scripts', [ $this, 'add_assets' ] );
-		$this->filter( 'get_terms', [ $this, 'order_terms' ], 10, 4 );
+		$this->action( 'wp_head', array( $this, 'modal' ) );
+		$this->action( 'admin_head', array( $this, 'modal' ) );
+		$this->action( 'wp_enqueue_scripts', array( $this, 'add_assets' ) );
+		$this->action( 'admin_enqueue_scripts', array( $this, 'add_assets' ) );
+		$this->filter( 'get_terms', array( $this, 'order_terms' ), 10, 4 );
 	}
 
 	public function modal() {
@@ -30,7 +30,7 @@ class Init {
 	}
 
 	public function add_assets() {
-		
+
 		$this->enqueue_script(
 			'easyroadmap',
 			EASYROADMAP_ASSETS_URL . 'common/js/init.js'
@@ -42,33 +42,35 @@ class Init {
 		);
 
 		// Localize
-		$localized = [
-			'api_base'	=> rest_url( '/easyroadmap/v1' )
-		];
+		$localized = array(
+			'api_base' => rest_url( '/easyroadmap/v1' ),
+		);
 
 		$this->localize_script(
-		    'easyroadmap',
-		    'EASYROADMAP',
-		    apply_filters( 'easyroadmap-localized_vars', $localized )
+			'easyroadmap',
+			'EASYROADMAP',
+			apply_filters( 'easyroadmap-localized_vars', $localized )
 		);
 	}
 
 	public function order_terms( $terms, $taxonomies, $query_vars, $term_query ) {
 
-	    if ( isset( $taxonomies[0] ) && 'task_stage' === $taxonomies[0] ) {
+		if ( isset( $taxonomies[0] ) && 'task_stage' === $taxonomies[0] ) {
 
-	        usort( $terms, function ( $a, $b ) {
+			usort(
+				$terms,
+				function ( $a, $b ) {
 
-	            $menu_order_a = (int) get_term_meta( $a->term_id, 'menu_order', true );
-	            $menu_order_b = (int) get_term_meta( $b->term_id, 'menu_order', true );
+					$menu_order_a = (int) get_term_meta( $a->term_id, 'menu_order', true );
+					$menu_order_b = (int) get_term_meta( $b->term_id, 'menu_order', true );
 
-	            return $menu_order_a <=> $menu_order_b;
-	        });
+					return $menu_order_a <=> $menu_order_b;
+				}
+			);
 
-	        return $terms;
-	    }
+			return $terms;
+		}
 
-	    return $terms;
+		return $terms;
 	}
-
 }

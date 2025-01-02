@@ -21,14 +21,13 @@ trait Cleaner {
 	 */
 	public function sanitize( $input, $type = 'text' ) {
 		if ( is_array( $input ) ) {
-			$sanitized = [];
+			$sanitized = array();
 			foreach ( $input as $key => $value ) {
 				if ( is_array( $value ) ) {
 					$sanitized[ $key ] = $this->sanitize( $value, 'array' ); // Recursive sanitization for nested arrays
-				}
-				elseif( ! is_null( $value ) ) {
+				} elseif ( ! is_null( $value ) ) {
 					// Determine type based on content (handling line breaks for textarea)
-					$_type = ( strpos( $value, PHP_EOL ) !== false ) ? 'textarea' : 'text';
+					$_type             = ( strpos( $value, PHP_EOL ) !== false ) ? 'textarea' : 'text';
 					$sanitized[ $key ] = $this->sanitize( $value, $_type );
 				}
 			}
@@ -66,9 +65,12 @@ trait Cleaner {
 	 */
 	public function escape( $output, $context = 'html' ) {
 		if ( is_array( $output ) ) {
-			return array_map( function( $item ) use ( $context ) {
-				return $this->escape( $item, $context );
-			}, $output );
+			return array_map(
+				function ( $item ) use ( $context ) {
+					return $this->escape( $item, $context );
+				},
+				$output
+			);
 		}
 
 		switch ( $context ) {

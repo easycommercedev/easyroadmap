@@ -22,5 +22,4 @@ class Uninstaller {
 	protected function remove_db_version() {
 		delete_option( 'easyroadmap_db_version' );
 	}
-
 }

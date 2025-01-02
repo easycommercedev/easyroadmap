@@ -6,7 +6,7 @@ defined( 'ABSPATH' ) || exit;
 class Post_Type {
 
 	public function register() {
-		$labels = [
+		$labels = array(
 			'name'               => _x( 'Tasks', 'post type general name', 'easyroadmap' ),
 			'singular_name'      => _x( 'Task', 'post type singular name', 'easyroadmap' ),
 			'menu_name'          => _x( 'Roadmap', 'admin menu', 'easyroadmap' ),
@@ -20,27 +20,26 @@ class Post_Type {
 			'search_items'       => __( 'Search Tasks', 'easyroadmap' ),
 			'parent_item_colon'  => __( 'Parent Tasks:', 'easyroadmap' ),
 			'not_found'          => __( 'No tasks found.', 'easyroadmap' ),
-			'not_found_in_trash' => __( 'No tasks found in Trash.', 'easyroadmap' )
-		];
+			'not_found_in_trash' => __( 'No tasks found in Trash.', 'easyroadmap' ),
+		);
 
-		$args = [
+		$args = array(
 			'labels'             => $labels,
 			'public'             => false,
 			'publicly_queryable' => false,
 			'show_ui'            => true,
 			// 'show_in_menu'       => 'store',
 			'query_var'          => true,
-			'rewrite'            => [ 'slug' => 'tasks' ],
+			'rewrite'            => array( 'slug' => 'tasks' ),
 			'capability_type'    => 'page',
 			'has_archive'        => true,
 			'hierarchical'       => false,
 			'menu_position'      => 4,
-			'menu_icon'			 => 'dashicons-calendar-alt',
-			'supports'           => [ 'title', 'editor', 'author', 'comments' ],
+			'menu_icon'          => 'dashicons-calendar-alt',
+			'supports'           => array( 'title', 'editor', 'author', 'comments' ),
 			'show_in_rest'       => false,
-		];
+		);
 
 		register_post_type( 'task', $args );
 	}
-
 }

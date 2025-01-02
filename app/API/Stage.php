@@ -10,7 +10,7 @@ class Stage {
 
 	use Rest;
 	use Cleaner;
-	
+
 	/**
 	 * Sort stage orders
 	 *
@@ -18,14 +18,14 @@ class Stage {
 	 * @return WP_REST_Response
 	 */
 	public function order( $request ) {
-	    $order	= $request->get_param( 'order' );
+		$order = $request->get_param( 'order' );
 
-	    foreach ( $order as $position => $term_id ) {
-	        $term_id = (int) str_replace( 'tag-', '', $term_id );
-	        
-	        update_term_meta( $term_id, 'menu_order', $position );
-	    }
+		foreach ( $order as $position => $term_id ) {
+			$term_id = (int) str_replace( 'tag-', '', $term_id );
 
-	    $this->response_success( [ 'message' => __( 'Stage order changed', 'easyroadmap' ) ] );
+			update_term_meta( $term_id, 'menu_order', $position );
+		}
+
+		$this->response_success( array( 'message' => __( 'Stage order changed', 'easyroadmap' ) ) );
 	}
 }
