@@ -9,7 +9,7 @@ class Post_Type {
 		$labels = array(
 			'name'               => _x( 'Tasks', 'post type general name', 'easyroadmap' ),
 			'singular_name'      => _x( 'Task', 'post type singular name', 'easyroadmap' ),
-			'menu_name'          => _x( 'Roadmap', 'admin menu', 'easyroadmap' ),
+			'menu_name'          => _x( 'EasyRoadmap', 'admin menu', 'easyroadmap' ),
 			'name_admin_bar'     => _x( 'Task', 'add new on admin bar', 'easyroadmap' ),
 			'add_new'            => _x( 'Add New', 'task', 'easyroadmap' ),
 			'add_new_item'       => __( 'Add New', 'easyroadmap' ),
@@ -34,7 +34,7 @@ class Post_Type {
 			'capability_type'    => 'page',
 			'has_archive'        => true,
 			'hierarchical'       => false,
-			'menu_position'      => 4,
+			'menu_position'      => 2,
 			'menu_icon'          => 'dashicons-calendar-alt',
 			'supports'           => array( 'title', 'editor', 'author', 'comments' ),
 			'show_in_rest'       => false,
