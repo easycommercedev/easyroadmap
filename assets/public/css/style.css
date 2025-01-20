@@ -105,9 +105,10 @@
 	color: #333;
 }
 #er-modal-description {
-	font-size: 1rem;
-	color: #555;
-	margin-bottom: 1rem;
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1rem;
+    margin-top: 1.5rem;
 }
 .er-vote-btn {
 	align-items: center;
