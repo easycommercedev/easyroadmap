@@ -9,7 +9,7 @@ jQuery(
 				update: function (event, ui) {
 					$.ajax(
 						{
-							url: `${EASYROADMAP.api_base} / stages / order`,
+							url: `${EASYROADMAP.api_base}/stages/order`,
 							method: "POST",
 							data: {
 								order: $( this ).sortable( 'toArray', {attribute: 'id'} )

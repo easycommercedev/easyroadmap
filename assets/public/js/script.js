@@ -19,7 +19,7 @@ jQuery(
 					// AJAX call to update the task's new column
 					$.ajax(
 						{
-							url: `${EASYROADMAP.api_base} / tasks / ${taskId} / move`,
+							url: `${EASYROADMAP.api_base}/tasks/${taskId}/move`,
 							method: "POST",
 							data: {
 								stage: columnId,
@@ -35,7 +35,7 @@ jQuery(
 
 					$.ajax(
 						{
-							url: `${EASYROADMAP.api_base} / tasks / order`,
+							url: `${EASYROADMAP.api_base}/tasks/order`,
 							method: "POST",
 							data: {
 								order: $( this ).sortable( 'toArray', {attribute: 'id'} )
@@ -64,7 +64,7 @@ jQuery(
 				// Fetch task details via AJAX
 				$.ajax(
 					{
-						url: `${EASYROADMAP.api_base} / tasks / ${taskId}`,
+						url: `${EASYROADMAP.api_base}/tasks/${taskId}`,
 						method: "GET",
 						success: function (response) {
 							$( "#er-modal-title" ).text( response.data.task.title );
@@ -89,7 +89,7 @@ jQuery(
 				const type    = voteBtn.data( "type" );
 				$.ajax(
 					{
-						url: `${EASYROADMAP.api_base} / tasks / ${taskId} / vote`,
+						url: `${EASYROADMAP.api_base}/tasks/${taskId}/vote`,
 						method: "POST",
 						data: {
 							type: type,

@@ -9,7 +9,7 @@ jQuery(
 
 				$.ajax(
 					{
-						url: `${EASYROADMAP_PLUGIN_ADMIN.api_base} / option`,
+						url: `${EASYROADMAP_PLUGIN_ADMIN.api_base}/option`,
 						type: 'DELETE',
 						dataType: 'JSON',
 						data: {
@@ -56,7 +56,7 @@ jQuery(
 
 				$.ajax(
 					{
-						url: `${EASYROADMAP_PLUGIN_ADMIN.api_base} / option`,
+						url: `${EASYROADMAP_PLUGIN_ADMIN.api_base}/option`,
 						type: 'POST',
 						dataType: 'JSON',
 						data: {
