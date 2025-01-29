@@ -37,7 +37,7 @@ $tasks = $args['tasks'] ?? array();
 				</span>
 			</div>
 
-			<div id="er-modal-description" class="er-mb-4">Task description goes here.</div>
+			<div id="er-modal-description" class="er-mb-4">Loading...</div>
 		</div>
 	</div>
 </div>
