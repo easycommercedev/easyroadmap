@@ -3,6 +3,8 @@
 
 **A powerful WordPress plugin to create and manage product roadmaps with a Kanban-style interface.**
 
+![image](https://github.com/user-attachments/assets/3f7a882a-794b-4ad8-830f-037dbfb91e4a)
+
 **📌 Features**
 ---------------
 
