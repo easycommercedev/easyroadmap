@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name: EasyRoadmap
- * Plugin URI: https://codexpert.io
- * Author: Codexpert, Inc
- * Author URI: https://codexpert.io
+ * Plugin URI: https://easycommerce.dev
+ * Author: EasyCommerce
+ * Author URI: https://easycommerce.dev
  * Description: Product roadmap made easy
  * Version: 0.9
  * Requires at least: 5.0
