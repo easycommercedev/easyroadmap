@@ -11,6 +11,9 @@ jQuery(
 						{
 							url: `${EASYROADMAP.api_base}/stages/order`,
 							method: "POST",
+							headers: {
+								'X-WP-Nonce': EASYROADMAP.nonce,
+							},
 							data: {
 								order: $( this ).sortable( 'toArray', {attribute: 'id'} )
 							},

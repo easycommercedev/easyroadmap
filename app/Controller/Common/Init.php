@@ -44,6 +44,7 @@ class Init {
 		// Localize
 		$localized = array(
 			'api_base' => rest_url( '/easyroadmap/v1' ),
+			'nonce'		=> wp_create_nonce( 'wp_rest' ),
 		);
 
 		$this->localize_script(
@@ -60,7 +61,6 @@ class Init {
 			usort(
 				$terms,
 				function ( $a, $b ) {
-
 					$menu_order_a = (int) get_term_meta( $a->term_id, 'menu_order', true );
 					$menu_order_b = (int) get_term_meta( $b->term_id, 'menu_order', true );
 

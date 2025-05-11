@@ -21,6 +21,9 @@ jQuery(
 						{
 							url: `${EASYROADMAP.api_base}/tasks/${taskId}/move`,
 							method: "POST",
+							headers: {
+								'X-WP-Nonce': EASYROADMAP.nonce,
+							},
 							data: {
 								stage: columnId,
 							},
@@ -37,6 +40,9 @@ jQuery(
 						{
 							url: `${EASYROADMAP.api_base}/tasks/order`,
 							method: "POST",
+							headers: {
+								'X-WP-Nonce': EASYROADMAP.nonce,
+							},
 							data: {
 								order: $( this ).sortable( 'toArray', {attribute: 'id'} )
 							},
@@ -66,6 +72,9 @@ jQuery(
 					{
 						url: `${EASYROADMAP.api_base}/tasks/${taskId}`,
 						method: "GET",
+						headers: {
+							'X-WP-Nonce': EASYROADMAP.nonce,
+						},
 						success: function (response) {
 							$( "#er-modal-title" ).text( response.data.task.title );
 							$( "#er-modal-description" ).html( response.data.task.description );
@@ -91,6 +100,9 @@ jQuery(
 					{
 						url: `${EASYROADMAP.api_base}/tasks/${taskId}/vote`,
 						method: "POST",
+						headers: {
+							'X-WP-Nonce': EASYROADMAP.nonce,
+						},
 						data: {
 							type: type,
 						},
