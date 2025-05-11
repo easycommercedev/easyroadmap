@@ -1,16 +1,18 @@
 <?php
 /**
  * Plugin Name: EasyRoadmap
- * Plugin URI: https://easysuite.io/easyroadmap
- * Author: EasySuite
- * Author URI: https://easysuite.io
- * Description: A simple WordPress plugin for creating and sharing interactive product roadmaps effortlessly.
+ * Plugin URI: https://easysuite.io
+ * Author: EasyCommerce
+ * Author URI: https://easysuite.io/easyroadmap
+ * Description: Build and share your product roadmap with a visual, drag-and-drop Kanban board.
  * Version: 0.9
  * Requires at least: 6.0
- * Tested up to: 6.7.2
+ * Tested up to: 6.8
  * Requires PHP: 7.4
  * Text Domain: easyroadmap
  * Domain Path: /languages
+ * License:     GPLv2 or later
+ * License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  *
  * EasyRoadmap is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
