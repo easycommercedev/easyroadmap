@@ -30,9 +30,9 @@ class Init {
 		$color = easyroadmap_get_random_color();
 		?>
 		<div class="form-field term-color-wrap">
-			<label for="tag-color"><?php _e( 'Color', 'easyroadmap' ); ?></label>
+			<label for="tag-color"><?php esc_html_e( 'Color', 'easyroadmap' ); ?></label>
 			<input name="color" id="tag-color" type="color" value="<?php echo esc_attr( $color ); ?>" size="40" aria-describedby="color-description">
-			<p id="color-description"><?php _e( 'The Kanban column color', 'easyroadmap' ); ?></p>
+			<p id="color-description"><?php esc_html_e( 'The Kanban column color', 'easyroadmap' ); ?></p>
 		</div>
 		<?php
 	}
@@ -63,11 +63,11 @@ class Init {
 			<tbody>
 				<tr class="form-field form-required term-name-wrap">
 					<th scope="row">
-						<label for="color"><?php _e( 'Color', 'easyroadmap' ); ?></label>
+						<label for="color"><?php esc_html_e( 'Color', 'easyroadmap' ); ?></label>
 					</th>
 					<td>
 						<input name="color" id="color" type="color" value="<?php echo esc_attr( $color ); ?>" size="40" aria-required="true" aria-describedby="color-description">
-						<p class="description" id="color-description"><?php _e( 'The Kanban column color', 'easyroadmap' ); ?></p>
+						<p class="description" id="color-description"><?php esc_html_e( 'The Kanban column color', 'easyroadmap' ); ?></p>
 					</td>
 				</tr>
 			</tbody>
