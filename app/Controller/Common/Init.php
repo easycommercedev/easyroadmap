@@ -44,7 +44,7 @@ class Init {
 		// Localize
 		$localized = array(
 			'api_base' => rest_url( '/easyroadmap/v1' ),
-			'nonce'		=> wp_create_nonce( 'wp_rest' ),
+			'nonce'    => wp_create_nonce( 'wp_rest' ),
 		);
 
 		$this->localize_script(

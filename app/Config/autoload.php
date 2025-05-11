@@ -1,5 +1,7 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 
 // Dynamically includes all PHP files in the app/Config directory, excluding the curren file
 foreach ( glob( dirname( __DIR__ ) . '/Config/*.php' ) as $config_file ) {
