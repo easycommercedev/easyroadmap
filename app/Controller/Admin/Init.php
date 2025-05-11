@@ -38,7 +38,18 @@ class Init {
 	}
 
 	public function save_add_taxo_fields( $term_id, $tt_id, $taxonomy ) {
-		if ( $taxonomy === 'task_stage' ) {
+		if ( $taxonomy !== 'task_stage' ) {
+			return;
+		}
+
+		if (
+			! isset( $_POST['_wpnonce_add-tag'] ) ||
+			! wp_verify_nonce( $_POST['_wpnonce_add-tag'], 'add-tag' )
+		) {
+			wp_die( 'Nonce verification failed' );
+		}
+
+		if ( isset( $_POST['color'] ) ) {
 			update_term_meta( $term_id, 'color', $this->sanitize( $_POST['color'] ) );
 		}
 	}
@@ -65,6 +76,13 @@ class Init {
 	}
 
 	public function save_edit_taxo_fields( $term_id, $tt_id ) {
+		if (
+			! isset( $_POST['_wpnonce'] ) ||
+			! wp_verify_nonce( $_POST['_wpnonce'], 'update-tag_' . $term_id )
+		) {
+			wp_die( 'Nonce verification failed' );
+		}
+
 		if ( isset( $_POST['color'] ) ) {
 			update_term_meta( $term_id, 'color', $this->sanitize( $_POST['color'] ) );
 		}

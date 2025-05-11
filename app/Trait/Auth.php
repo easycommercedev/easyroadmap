@@ -45,16 +45,6 @@ trait Auth {
 	}
 
 	/**
-	 * Check if the current user is a customer.
-	 *
-	 * @param WP_REST_Request $request The request object.
-	 * @return bool True if sandbox mode is enabled or the user is logged in, false otherwise.
-	 */
-	public function is_customer( $request ) {
-		return $this->is_sandbox_mode() || $this->is_admin( $request ) || current_user_can( 'customer' );
-	}
-
-	/**
 	 * Check if the current user is an editor.
 	 *
 	 * @param WP_REST_Request $request The request object.

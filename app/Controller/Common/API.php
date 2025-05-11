@@ -37,11 +37,11 @@ class API {
 				'callback'            => array( new Task(), 'move' ),
 				'args'                => array(
 					'id'    => array(
-						'description' => __( 'The `task` ID', 'easysupport' ),
+						'description' => __( 'The `task` ID', 'easyroadmap' ),
 						'required'    => true,
 					),
 					'stage' => array(
-						'description' => __( 'The `stage` ID', 'easysupport' ),
+						'description' => __( 'The `stage` ID', 'easyroadmap' ),
 						'required'    => true,
 					),
 				),
@@ -57,7 +57,7 @@ class API {
 				'callback'            => array( new Task(), 'get' ),
 				'args'                => array(
 					'id' => array(
-						'description' => __( 'The `task` ID', 'easysupport' ),
+						'description' => __( 'The `task` ID', 'easyroadmap' ),
 						'required'    => true,
 					),
 				),
@@ -73,11 +73,11 @@ class API {
 				'callback'            => array( new Task(), 'vote' ),
 				'args'                => array(
 					'id'   => array(
-						'description' => __( 'The `task` ID', 'easysupport' ),
+						'description' => __( 'The `task` ID', 'easyroadmap' ),
 						'required'    => true,
 					),
 					'type' => array(
-						'description' => __( 'The vote type- upvote or downvote', 'easysupport' ),
+						'description' => __( 'The vote type- upvote or downvote', 'easyroadmap' ),
 						'required'    => true,
 					),
 				),
@@ -93,7 +93,7 @@ class API {
 				'callback'            => array( new Task(), 'order' ),
 				'args'                => array(
 					'order' => array(
-						'description' => __( 'The order', 'easysupport' ),
+						'description' => __( 'The order', 'easyroadmap' ),
 						'required'    => true,
 					),
 				),
@@ -112,7 +112,7 @@ class API {
 				'callback'            => array( new Stage(), 'order' ),
 				'args'                => array(
 					'order' => array(
-						'description' => __( 'The order', 'easysupport' ),
+						'description' => __( 'The order', 'easyroadmap' ),
 						'required'    => true,
 					),
 				),
@@ -131,7 +131,7 @@ class API {
 				'callback'            => array( new Option(), 'get' ),
 				'args'                => array(
 					'key' => array(
-						'description' => __( 'The option `key` name', 'easysupport' ),
+						'description' => __( 'The option `key` name', 'easyroadmap' ),
 						'required'    => true,
 					),
 				),
@@ -147,11 +147,11 @@ class API {
 				'callback'            => array( new Option(), 'update' ),
 				'args'                => array(
 					'key'   => array(
-						'description' => __( 'The option `key` name', 'easysupport' ),
+						'description' => __( 'The option `key` name', 'easyroadmap' ),
 						'required'    => true,
 					),
 					'value' => array(
-						'description' => __( 'The option `value`', 'easysupport' ),
+						'description' => __( 'The option `value`', 'easyroadmap' ),
 						'required'    => true,
 					),
 				),
@@ -167,7 +167,7 @@ class API {
 				'callback'            => array( new Option(), 'delete' ),
 				'args'                => array(
 					'key' => array(
-						'description' => __( 'The option `key` name', 'easysupport' ),
+						'description' => __( 'The option `key` name', 'easyroadmap' ),
 						'required'    => true,
 					),
 				),

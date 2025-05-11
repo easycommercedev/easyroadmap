@@ -1,6 +1,4 @@
 <?php
-use EasyRoadmap\Helper\Utility;
-
 $tasks = $args['tasks'] ?? array();
 
 ?>

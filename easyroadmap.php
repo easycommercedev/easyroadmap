@@ -1,13 +1,13 @@
 <?php
 /**
  * Plugin Name: EasyRoadmap
- * Plugin URI: https://easycommerce.dev
- * Author: EasyCommerce
- * Author URI: https://easycommerce.dev
- * Description: Product roadmap made easy
+ * Plugin URI: https://easysuite.io/easyroadmap
+ * Author: EasySuite
+ * Author URI: https://easysuite.io
+ * Description: A simple WordPress plugin for creating and sharing interactive product roadmaps effortlessly.
  * Version: 0.9
- * Requires at least: 5.0
- * Tested up to: 6.5
+ * Requires at least: 6.0
+ * Tested up to: 6.7.2
  * Requires PHP: 7.4
  * Text Domain: easyroadmap
  * Domain Path: /languages
@@ -32,7 +32,6 @@ define( 'EASYROADMAP_VERSION', '0.9' );
 define( 'EASYROADMAP_PLUGIN_DIR', plugin_dir_path( EASYROADMAP_FILE ) );
 define( 'EASYROADMAP_PLUGIN_URL', plugin_dir_url( EASYROADMAP_FILE ) );
 define( 'EASYROADMAP_ASSETS_URL', EASYROADMAP_PLUGIN_URL . 'assets/' );
-define( 'EASYROADMAP_SANDBOX', true );
 
 require_once 'vendor/autoload.php';
 
