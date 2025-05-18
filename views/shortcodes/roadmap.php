@@ -8,11 +8,11 @@ $tasks = $args['tasks'] ?? array();
 ?>
 <div class="er-flex er-justify-center er-space-x-4 er-mt-10 er-kanban-columns">
 	<?php foreach ( $tasks as $slug => $column ) : ?>
-		<div class="er-kanban-column" id="er-stage-<?php esc_attr_e( $column['id'] ); ?>" style="background: <?php esc_attr_e( get_term_meta( $column['id'], 'color', true ) ); ?>;">
-			<h3 class="er-text-xl er-font-bold er-mb-4"><?php esc_attr_e( $column['name'] ); ?></h3>
+		<div class="er-kanban-column" id="er-stage-<?php echo esc_attr( $column['id'] ); ?>" style="background: <?php echo esc_attr( get_term_meta( $column['id'], 'color', true ) ); ?>;">
+			<h3 class="er-text-xl er-font-bold er-mb-4"><?php echo esc_attr( $column['name'] ); ?></h3>
 			<?php if ( ! empty( $column['tasks'] ) ) : ?>
 				<?php foreach ( $column['tasks'] as $task_id => $task_name ) : ?>
-					<div class="er-kanban-item" id="er-task-<?php esc_attr_e( $task_id ); ?>"><?php esc_html_e( $task_name ); ?></div>
+					<div class="er-kanban-item" id="er-task-<?php echo esc_attr( $task_id ); ?>"><?php echo esc_html( $task_name ); ?></div>
 				<?php endforeach; ?>
 			<?php else : ?>
 			<?php endif; ?>

@@ -1,6 +1,6 @@
 === EasyRoadmap ===
 Contributors: easysuite
-Tags: roadmap, kanban, product planning, feature request, voting, project management, feedback
+Tags: roadmap, kanban, product roadmap, feedback
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4

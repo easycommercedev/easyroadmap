@@ -106,6 +106,7 @@ class Utility {
 			wp_cache_add( "easyroadmap_{$_args['post_type']}", $posts, 'easyroadmap', 3600 );
 		}
 
+		// translators: %s: Post type label.
 		$posts = $show_heading ? array( '' => sprintf( __( '- Choose a %s -', 'easyroadmap' ), $_args['post_type'] ) ) + $posts : $posts;
 
 		return apply_filters( 'easyroadmap_get_posts', $posts, $_args );
