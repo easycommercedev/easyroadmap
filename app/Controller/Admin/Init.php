@@ -44,7 +44,7 @@ class Init {
 
 		if (
 			! isset( $_POST['_wpnonce_add-tag'] ) ||
-			! wp_verify_nonce( $_POST['_wpnonce_add-tag'], 'add-tag' )
+			! wp_verify_nonce( $this->sanitize( wp_unslash( $_POST['_wpnonce_add-tag'] ) ), 'add-tag' )
 		) {
 			wp_die( 'Nonce verification failed' );
 		}
@@ -78,7 +78,7 @@ class Init {
 	public function save_edit_taxo_fields( $term_id, $tt_id ) {
 		if (
 			! isset( $_POST['_wpnonce'] ) ||
-			! wp_verify_nonce( $_POST['_wpnonce'], 'update-tag_' . $term_id )
+			! wp_verify_nonce( $this->sanitize( wp_unslash( $_POST['_wpnonce'] ) ), 'update-tag_' . $term_id )
 		) {
 			wp_die( 'Nonce verification failed' );
 		}
