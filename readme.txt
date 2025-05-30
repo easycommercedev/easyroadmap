@@ -77,7 +77,7 @@ Absolutely. EasyRoadmap offers a REST API and clean hooks for customization and 
 
 == Changelog ==
 
-= 0.9 - 2025.05.27 =
+= v0.9 - 2025.05.27 =
 * Initial release with Kanban board, task voting, shortcode support, REST API integration, and customizable taxonomy columns.
 
 == Upgrade Notice ==
