@@ -1,0 +1,70 @@
+name: Zip and Attach to Release
+
+on:
+  push:
+    tags:
+      - 'v*'  # Trigger on version tags like v1.0.0
+
+jobs:
+  build-zip:
+    name: Create and Upload Plugin ZIP
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the Git repository
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Step 2: Install Node.js and dependencies
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install NPM Dependencies
+        run: npm install
+
+      - name: Build React Files
+        run: npm run build
+
+      - name: Minify JS and CSS Files
+        run: npm run minify
+
+      # Step 3: Install Composer dependencies to regenerate `vendor/`
+      - name: Install Composer Dependencies
+        run: composer install --no-dev --optimize-autoloader -n
+
+      # Step 4: Get the plugin version from the tag name
+      - name: Get Version from Tag
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+
+      # Step 5: Build Plugin ZIP
+      - name: Build Plugin ZIP
+        run: |
+          mkdir -p release
+          rsync -rc --delete \
+            --exclude=".git*" \
+            --exclude=".github" \
+            --exclude="node_modules" \
+            --exclude="spa" \
+            --exclude="tests" \
+            --exclude="*.md" \
+            --exclude="composer.*" \
+            --exclude="package*.json" \
+            --exclude="webpack.config.js" \
+            --exclude="tailwind.config.js" \
+            --exclude="postcss.config.js" \
+            --exclude="*.sh" \
+            --exclude="svn*" \
+            ./ release/easyroadmap/
+          cd release
+          zip -r easyroadmap.${VERSION}.zip easyroadmap
+
+      # Step 6: Upload ZIP to GitHub Release
+      - name: Upload ZIP to GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: release/easyroadmap.${{ env.VERSION }}.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

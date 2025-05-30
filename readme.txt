@@ -1,5 +1,5 @@
 === EasyRoadmap ===
-Contributors: easysuite
+Contributors: easysuite, easycommerce
 Tags: roadmap, kanban, product roadmap, feedback
 Requires at least: 6.0
 Tested up to: 6.8
@@ -77,7 +77,7 @@ Absolutely. EasyRoadmap offers a REST API and clean hooks for customization and 
 
 == Changelog ==
 
-= 0.9 =
+= 0.9 - 2025.05.27 =
 * Initial release with Kanban board, task voting, shortcode support, REST API integration, and customizable taxonomy columns.
 
 == Upgrade Notice ==
