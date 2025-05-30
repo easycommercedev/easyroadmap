@@ -5,7 +5,7 @@
  * Author: EasyCommerce
  * Author URI: https://easysuite.io/easyroadmap
  * Description: Build and share your product roadmap with a visual, drag-and-drop Kanban board.
- * Version: 0.9
+ * Version: 0.9.1
  * Requires at least: 6.0
  * Tested up to: 6.8
  * Requires PHP: 7.4
@@ -30,7 +30,7 @@ namespace EasyRoadmap;
 defined( 'ABSPATH' ) || exit;
 
 define( 'EASYROADMAP_FILE', __FILE__ );
-define( 'EASYROADMAP_VERSION', '0.9' );
+define( 'EASYROADMAP_VERSION', '0.9.1' );
 define( 'EASYROADMAP_PLUGIN_DIR', plugin_dir_path( EASYROADMAP_FILE ) );
 define( 'EASYROADMAP_PLUGIN_URL', plugin_dir_url( EASYROADMAP_FILE ) );
 define( 'EASYROADMAP_ASSETS_URL', EASYROADMAP_PLUGIN_URL . 'assets/' );

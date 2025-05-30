@@ -1,10 +1,10 @@
-=== EasyRoadmap ===
+=== EasyRoadmap - Interactive Kanban Roadmap for WordPress===
 Contributors: easysuite, easycommerce
 Tags: roadmap, kanban, product roadmap, feedback
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.9
+Stable tag: 0.9.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -47,6 +47,15 @@ Each roadmap stage is a term in the Stages (`task_stage`) taxonomy. To set a cus
 3. Pick a hex color (e.g., `#3B82F6`) using the color picker
 4. The chosen color will appear as the header background for that column on the roadmap board.
 
+= More from us =
+### 🛒 Build Your Store with EasyCommerce
+
+Looking for a fast, modern, and developer-friendly eCommerce solution?
+
+[EasyCommerce](https://wordpress.org/plugins/easycommerce/) is a lightweight WordPress plugin designed to help you build and manage online stores effortlessly. It offers features like real-time analytics, abandoned cart recovery, customizable product pages, and secure payment gateways.
+
+With its intuitive interface and seamless integration, EasyCommerce is the perfect companion to EasyRoadmap, enabling you to align your product planning with your sales strategy.
+
 == Installation ==
 
 1. Upload the plugin to the `/wp-content/plugins/easyroadmap` directory, or install via the WordPress dashboard.
@@ -76,6 +85,9 @@ Absolutely. EasyRoadmap offers a REST API and clean hooks for customization and 
 4. Custom color settings for roadmap stages.
 
 == Changelog ==
+
+= v0.9.1 - 2025.05.27 =
+* Update title and description.
 
 = v0.9 - 2025.05.27 =
 * Initial release with Kanban board, task voting, shortcode support, REST API integration, and customizable taxonomy columns.
