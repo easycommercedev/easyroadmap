@@ -15,42 +15,27 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # Step 2: Install Node.js and dependencies
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install NPM Dependencies
-        run: npm install
-
-      - name: Build React Files
-        run: npm run build
-
-      - name: Minify JS and CSS Files
-        run: npm run minify
-
-      # Step 3: Install Composer dependencies to regenerate `vendor/`
+      # Step 2: Install Composer dependencies to regenerate `vendor/`
       - name: Install Composer Dependencies
         run: composer install --no-dev --optimize-autoloader -n
 
-      # Step 4: Get the plugin version from the tag name
+      # Step 3: Get the plugin version from the tag name
       - name: Get Plugin Version
         id: get_version
         run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
 
-      # Step 5: Install Subversion (SVN)
+      # Step 4: Install Subversion (SVN)
       - name: Install Subversion
         run: sudo apt-get update && sudo apt-get install -y subversion
 
-      # Step 6: Checkout WordPress SVN Repository
+      # Step 5: Checkout WordPress SVN Repository
       - name: Checkout WordPress SVN Repo
         run: |
           svn checkout --depth=immediates "https://plugins.svn.wordpress.org/easyroadmap/" svn
           cd svn
           svn update --set-depth=infinity trunk assets tags
 
-      # Step 7: Sync Plugin Files to SVN trunk (excluding unnecessary files)
+      # Step 6: Sync Plugin Files to SVN trunk (excluding unnecessary files)
       - name: Sync Plugin Files to SVN trunk
         run: |
           rsync -rc --delete \
@@ -66,23 +51,20 @@ jobs:
             --exclude="package-lock.json" \
             --exclude="package.json" \
             --exclude="phpunit.xml" \
-            --exclude="postcss.config.js" \
             --exclude="readme.md" \
-            --exclude="tailwind.config.js" \
             --exclude="tree.txt" \
-            --exclude="webpack.config.js" \
             --exclude="svn-assets" \
             --exclude="svn" \
             ./ svn/trunk/
 
-      # Step 8: Sync WordPress.org Assets (from `svn-assets/` in Git) to SVN `assets/`
+      # Step 7: Sync WordPress.org Assets (from `svn-assets/` in Git) to SVN `assets/`
       - name: Sync WordPress.org Assets to SVN
         run: |
           if [ -d svn-assets ]; then
             rsync -rc --delete svn-assets/ svn/assets/
           fi
 
-      # Step 9: Commit Plugin Files to Trunk
+      # Step 8: Commit Plugin Files to Trunk
       - name: Commit Plugin Files to Trunk
         run: |
           cd svn
@@ -93,7 +75,7 @@ jobs:
             --password "${{ secrets.SVN_PASSWORD }}" \
             --no-auth-cache --non-interactive
 
-      # Step 10: Tag Release in SVN
+      # Step 9: Tag Release in SVN
       - name: Tag Release in SVN
         run: |
           cd svn

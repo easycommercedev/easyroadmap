@@ -15,31 +15,16 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # Step 2: Install Node.js and dependencies
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install NPM Dependencies
-        run: npm install
-
-      - name: Build React Files
-        run: npm run build
-
-      - name: Minify JS and CSS Files
-        run: npm run minify
-
-      # Step 3: Install Composer dependencies to regenerate `vendor/`
+      # Step 2: Install Composer dependencies to regenerate `vendor/`
       - name: Install Composer Dependencies
         run: composer install --no-dev --optimize-autoloader -n
 
-      # Step 4: Get the plugin version from the tag name
+      # Step 3: Get the plugin version from the tag name
       - name: Get Version from Tag
         id: get_version
         run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
 
-      # Step 5: Build Plugin ZIP
+      # Step 4: Build Plugin ZIP
       - name: Build Plugin ZIP
         run: |
           mkdir -p release
@@ -61,7 +46,7 @@ jobs:
           cd release
           zip -r easyroadmap.${VERSION}.zip easyroadmap
 
-      # Step 6: Upload ZIP to GitHub Release
+      # Step 5: Upload ZIP to GitHub Release
       - name: Upload ZIP to GitHub Release
         uses: softprops/action-gh-release@v1
         with:
