@@ -20,6 +20,7 @@ class Shortcode {
 	public function callback_roadmap( $atts ) {
 		$atts = shortcode_atts( array( 'product' => null ), $atts, 'roadmap' );
 		$product = $atts[ 'product' ] ?? null;
-		Roadmap::get_roadmap( $product );
+		
+		return Roadmap::get_roadmap( $product );
 	}
 }
