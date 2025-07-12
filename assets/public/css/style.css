@@ -61,6 +61,9 @@
 	transform: rotate(-3deg);
 	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
+.er-modal-scroll-lock {
+	overflow: hidden;
+}
 .er-modal-overlay {
 	position: fixed;
 	top: 0;
