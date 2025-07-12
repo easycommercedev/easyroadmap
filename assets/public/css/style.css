@@ -1,6 +1,9 @@
 .er-flex {
 	display: flex;
 }
+.er-items-center {
+	align-items: baseline;
+}
 .er-space-x-2 {
 	gap: 8px;
 }
@@ -87,6 +90,9 @@
 	position: relative;
 	max-height: 600px;
 }
+#er-modal-content > *:not(:last-child) {
+	margin-bottom: 1rem;
+}
 .er-close-modal {
 	position: absolute;
 	top: 10px;
@@ -109,6 +115,19 @@
     color: #555;
     margin-bottom: 1rem;
     margin-top: 1.5rem;
+}
+#er-modal-link:before {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%23000' d='M9 3h8v8l-2-1V6.92l-5.6 5.59l-1.41-1.41L14.08 5H10zm3 12v-3l2-2v7H3V6h8L9 8H5v7z'/%3E%3C/svg%3E");
+  background-color: currentColor;
+  -webkit-mask-image: var(--svg);
+  mask-image: var(--svg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
 }
 .er-vote-btn {
 	align-items: center;

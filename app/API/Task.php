@@ -37,8 +37,12 @@ class Task {
 				'task'    => array(
 					'title'       => $task->post_title,
 					'description' => wpautop( $task->post_content ),
+					'stage'		  => implode(',', wp_get_post_terms( $task->ID, 'task_stage', array( 'fields' => 'names' ) )),
+					'products'	  => implode(',', wp_get_post_terms( $task->ID, 'task_product', array( 'fields' => 'names' ) )),
+					'tags'		  => '-', //TODO: explode(',', wp_get_post_terms( $task->ID, 'task_tags' )),
 					'upvotes'     => get_post_meta( $task->ID, 'upvote', true ),
 					'downvotes'   => get_post_meta( $task->ID, 'downvote', true ),
+					'link'		  => get_permalink( $task->ID ),
 				),
 			)
 		);
