@@ -26,8 +26,13 @@ $tasks = $args['tasks'] ?? array();
 
 		<div id="er-modal-content" class="er-text-gray-700">
 			<input type="hidden" id="er-modal-id">
-			<h2 id="er-modal-title" class="er-text-2xl er-font-bold er-mb-4">Task Title</h2>
-
+			<div class="er-flex er-space-x-2 er-items-center">
+				<h2 id="er-modal-title" class="er-text-2xl er-font-bold er-mb-4">Task Title</h2>
+				<a href="#" id="er-modal-link">
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="currentColor" d="M9 3h8v8l-2-1V6.92l-5.6 5.59l-1.41-1.41L14.08 5H10zm3 12v-3l2-2v7H3V6h8L9 8H5v7z"/></svg>
+				</a>
+			</div>
+			
 			<div class="er-flex er-items-center er-space-x-2 er-mb-4">
 				<span id="er-upvote" data-type="upvote" class="er-vote-btn er-flex er-items-center er-space-x-2">
 					👍 <?php esc_html_e( 'Upvote', 'easyroadmap' ); ?>
@@ -37,6 +42,12 @@ $tasks = $args['tasks'] ?? array();
 					👎 <?php esc_html_e( 'Downvote', 'easyroadmap' ); ?>
 					(<span class="er-vote-count" id="er-downvote-count">0</span>)
 				</span>
+			</div>
+
+			<div class="er-flex er-items-center er-space-x-2 er-mb-4">
+				Stage:<span id="er-modal-stage"></span>
+				| Products:<span id="er-modal-products"></span>
+				| Tags:<span id="er-modal-tags"></span>
 			</div>
 
 			<div id="er-modal-description" class="er-mb-4">Loading...</div>
