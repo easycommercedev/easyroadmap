@@ -31,15 +31,27 @@ class Task {
 		$id   = $request->get_param( 'id' );
 		$task = get_post( $id );
 
+		// Get stage
+		$stages = wp_get_post_terms( $task->ID, 'task_stage', array( 'fields' => 'names' ));
+		$stage = is_wp_error( $stages ) || empty( $stages ) ? '-' : implode(',', $stages );
+
+		// Get products
+		$products = wp_get_post_terms( $task->ID, 'task_product', array( 'fields' => 'names' ));
+		$product = is_wp_error( $products ) || empty( $products ) ? '-' : implode(',', $products );
+
+		// Get tags
+		$tags = wp_get_post_terms( $task->ID, 'task_tags', array( 'fields' => 'names' ) );
+		$tag = is_wp_error( $tags ) || empty( $tags ) ? '-' : implode( ',', $tags );
+
 		$this->response_success(
 			array(
 				'message' => __( 'Task found', 'easyroadmap' ),
 				'task'    => array(
 					'title'       => $task->post_title,
 					'description' => wpautop( $task->post_content ),
-					'stage'		  => implode(',', wp_get_post_terms( $task->ID, 'task_stage', array( 'fields' => 'names' ) )),
-					'products'	  => implode(',', wp_get_post_terms( $task->ID, 'task_product', array( 'fields' => 'names' ) )),
-					'tags'		  => '-', //TODO: explode(',', wp_get_post_terms( $task->ID, 'task_tags' )),
+					'stage'		  => $stage,
+					'products'	  => $product,
+					'tags'		  => $tag,
 					'upvotes'     => get_post_meta( $task->ID, 'upvote', true ),
 					'downvotes'   => get_post_meta( $task->ID, 'downvote', true ),
 					'link'		  => get_permalink( $task->ID ),
