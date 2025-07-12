@@ -66,6 +66,7 @@ jQuery(
 				$( "#er-modal-overlay" ).fadeIn();
 				$( "#er-modal-id" ).val( taskId );
 				$( "#er-modal" ).fadeIn();
+				$( "body" ).addClass( 'er-modal-scroll-lock' );
 
 				// Fetch task details via AJAX
 				$.ajax(
@@ -123,6 +124,7 @@ jQuery(
 			function (e) {
 				if (e.target.id === "er-modal-overlay") {
 					$( "#er-modal, #er-modal-overlay" ).fadeOut();
+					$( "body" ).removeClass( 'er-modal-scroll-lock' );
 				}
 			}
 		);
@@ -132,6 +134,7 @@ jQuery(
 			"click",
 			function () {
 				$( "#er-modal, #er-modal-overlay" ).fadeOut();
+				$( "body" ).removeClass( 'er-modal-scroll-lock' );
 			}
 		);
 
