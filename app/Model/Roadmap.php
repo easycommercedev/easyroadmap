@@ -1,5 +1,5 @@
 <?php
-namespace EasyRoadmap\Controller\Common;
+namespace EasyRoadmap\Model;
 
 defined( 'ABSPATH' ) || exit;
 

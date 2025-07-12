@@ -3,7 +3,7 @@ namespace EasyRoadmap\Controller\Public;
 
 defined( 'ABSPATH' ) || exit;
 
-use EasyRoadmap\Controller\Common\Roadmap;
+use EasyRoadmap\Model\Roadmap;
 use EasyRoadmap\Trait\Hook;
 
 class Shortcode {
