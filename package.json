@@ -4,13 +4,16 @@
     "build:admin": "webpack --config webpack.config.admin.js",
     "build:public": "webpack --config webpack.config.public.js",
     "build:css": "webpack --config webpack.config.js",
+    "build:blocks": "wp-scripts build --source-path=app/Blocks --webpack-copy-php --blocks-manifest",
     "start": "webpack serve --config webpack.config.dev.js",
+    "start:blocks": "wp-scripts start --webpack-copy-php --blocks-manifest",
     "watch": "webpack --watch"
   },
   "devDependencies": {
     "@babel/core": "^7.24.5",
     "@babel/preset-env": "^7.24.5",
     "@babel/preset-react": "^7.24.1",
+    "@wordpress/scripts": "^30.19.0",
     "babel-loader": "^9.1.3",
     "clean-webpack-plugin": "^4.0.0",
     "html-webpack-plugin": "^5.6.0",
