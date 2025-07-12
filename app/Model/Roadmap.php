@@ -49,6 +49,11 @@ class Roadmap {
 			);
 		}
 
-		return Utility::get_template( 'shortcodes/roadmap.php', array( 'tasks' => $tasks ) );
+		$show_links = apply_filters( 'easyroadmap_show_stage_links', false );
+
+		return Utility::get_template( 'shortcodes/roadmap.php', array( 
+			'tasks' => $tasks,
+			'show_stage_links' => $show_links,
+		) );
     }
 }
