@@ -25,8 +25,8 @@ class Post_Type {
 
 		$args = array(
 			'labels'             => $labels,
-			'public'             => false,
-			'publicly_queryable' => false,
+			'public'             => true,
+			'publicly_queryable' => true,
 			'show_ui'            => true,
 			// 'show_in_menu'       => 'store',
 			'query_var'          => true,
@@ -37,7 +37,7 @@ class Post_Type {
 			'menu_position'      => 2,
 			'menu_icon'          => 'dashicons-calendar-alt',
 			'supports'           => array( 'title', 'editor', 'author', 'comments' ),
-			'show_in_rest'       => false,
+			'show_in_rest'       => true, // needed for block editor
 		);
 
 		register_post_type( 'task', $args );
