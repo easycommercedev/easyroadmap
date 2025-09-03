@@ -79,8 +79,19 @@ jQuery(
 						success: function (response) {
 							$( "#er-modal-title" ).text( response.data.task.title );
 							$( "#er-modal-description" ).html( response.data.task.description );
+							$( "#er-modal-stage" ).html( response.data.task.stage );
+							$( "#er-modal-products" ).html( response.data.task.products );
+							$( "#er-modal-tags" ).html( response.data.task.tags );
 							$( "#er-upvote-count" ).text( response.data.task.upvotes || 0 );
 							$( "#er-downvote-count" ).text( response.data.task.downvotes || 0 );
+							
+							if(response.data.task.link) {
+								$( "#er-modal-link" )
+								.attr('href', response.data.task.link )
+								.attr('target', '_blank');
+							} else {
+								$( "#er-modal-link" ).hide();
+							}
 						},
 						error: function () {
 							console.error( "Error fetching task data." );
